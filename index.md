@@ -44,10 +44,6 @@ Kunngjøringer og beskjeder legges ut i [Canvas](https://uit.instructure.com/){:
 
 ## Innlevering og eksamen  
 
-I kurset består av to deler, som undervises av henholdsvis Dengjun Zhang og Espen Sirnes. Til hver del skal studentene skrive en oppgave. Begge oppgavene leveres som eksamemn på Wiseflow 20. mai. 
+I kurset består av to deler, som undervises av henholdsvis Dengjun Zhang og Espen Sirnes. Til hver del skal studentene skrive en oppgave. Begge oppgavene leveres først som obligatoriske innleveringer før nærmere angitt tidsfrist, og så samlet som eksamemn på Wiseflow 20. mai. Til begge oppgavene er det en muntlig presentasjon. 
 
-Arbeidsravene i kurset består av innleveringer av oppgavene på Canvas. 
-Kurset har to arbeidskrav:
-- To innleveringer av semesteroppgaver
-- 
-
+  
