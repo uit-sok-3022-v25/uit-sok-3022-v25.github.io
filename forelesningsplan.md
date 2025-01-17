@@ -15,8 +15,8 @@
 | 14        | 01.04.2025 | 12:15  | Espen Sirnes  | ARIMA - GARCH paneltime      |
 | 14        | 03.04.2025 | 12:15  | Espen Sirnes  | Derivater                    |
 | 15        | 10.04.2025 | 12:15  | Espen Sirnes  | Derivater                    |
-| 17        | 24.04.2025 | 12:15  | Espen Sirnes  |                              |
-| 19        | 06.05.2025 | 08:15  | Espen Sirnes  |                              |
+| 17        | 24.04.2025 | 12:15  | Espen Sirnes  | Makroøkonomi                 |
+| 19        | 06.05.2025 | 08:15  | Espen Sirnes  | Makroøkonomi                 |
 
 
 
