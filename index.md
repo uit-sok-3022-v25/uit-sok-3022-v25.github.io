@@ -32,7 +32,7 @@ For henvendelser av administrative art send e-post til: <hhcampus@hjelp.uit.no>.
 ## Pensum  
 
 
-[Leganto](https://bibsys-c.alma.exlibrisgroup.com/leganto/){:target="blank"}  
+[Leganto](https://bibsys-c.alma.exlibrisgroup.com/leganto/nui/lists/12992096220002205){:target="blank"}  
 
 
 
@@ -44,6 +44,6 @@ Kunngjøringer og beskjeder legges ut i [Canvas](https://uit.instructure.com/){:
 
 ## Innlevering og eksamen  
 
-I kurset består av to deler, som undervises av henholdsvis Dengjun Zhang og Espen Sirnes. Til hver del skal studentene skrive en oppgave. Begge oppgavene leveres først som obligatoriske innleveringer før nærmere angitt tidsfrist, og så samlet som eksamemn på Wiseflow 20. mai. Til begge oppgavene er det en muntlig presentasjon. 
+I kurset består av to deler, som undervises av henholdsvis Dengjun Zhang og Espen Sirnes. Til hver del er det en innlevering. Begge innleveringene leveres først som arbeidskrav, og så samlet som eksamen på Wiseflow 20. mai. Begge innleveringene skal presenteres muntlig. 
 
   
