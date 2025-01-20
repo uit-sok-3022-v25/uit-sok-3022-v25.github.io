@@ -1,6 +1,12 @@
 {% include navbar.html %}{% include top-box.html %}
 
 
+
+
+
+
+
+
 # Viktig når det gjelder innleveringene:
 * Dere legger ved kode i den endelige innleveringen som en zip-fil (ikke nødvendig for arbeidskrav)
 * All kode MÅ være kjørbar direkte fra zip-filen
