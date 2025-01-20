@@ -1,4 +1,12 @@
 {% include navbar.html %}{% include top-box.html %}
+# Pensum
+
+## Økonometri:
+Kommer
+
+## Finans/Makro:
+Forelesningsnotater (kommer)
+
 # Kursplan
 
 | Ukenummer | Dato       | Tid    | Foreleser     | Tema                         |
