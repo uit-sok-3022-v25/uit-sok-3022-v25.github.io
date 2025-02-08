@@ -21,7 +21,7 @@
 
 
 ### VCEM: 
-[Li, F., Wu, Y. C., Wang, M. C., Wong, W. K., & Xing, Z. (2021). Empirical study on CO2 emissions, financial development and economic growth of the BRICS countries. Energies, 14(21), 7341.]
+[Li, F., Wu, Y. C., Wang, M. C., Wong, W. K., & Xing, Z. (2021). Empirical study on CO2 emissions, financial development and economic growth of the BRICS countries. Energies, 14(21), 7341.]https://github.com/uit-sok-3022-v25/uit-sok-3022-v25.github.io/blob/main/reading/Li%20et%20al.%20%20(2021).%20Empirical%20study%20on%20CO2%20emissions%2C%20financial%20development%20and%20economic%20growth%20of%20the%20BRICS%20countries.pdf
 ### Permanentinntektshypotesen:
 [Campbell, John Y., and N. Gregory Mankiw. "International evidence on the persistence of economic fluctuations." Journal of Monetary Economics 23.2 (1989): 319-333.](reading/Campbell%20and%20Mankiw%20(1989).pdf) (CM)
 
