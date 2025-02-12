@@ -2,6 +2,12 @@
 # Pensum
 
 ## Økonometri:
+[Li et al. (2021) DCC-GARCH.pdf](Li et al. (2021) DCC-GARCH.pdf)
+[Li et al.  (2021). Empirical study on CO2 emissions, financial development and economic growth of the BRICS countries.pdf](reading/Li et al.  (2021). Empirical study on CO2 emissions, financial development and economic growth of the BRICS countries.pdf)
+[Sadorsky2010c_Impact of financial development increase energy consumption.pdf](reading/Sadorsky2010c_Impact of financial development increase energy consumption.pdf)
+[Saud2019x4_Nexus Between Financial Development and CO2 CEE.pdf](reading/Saud2019x4_Nexus Between Financial Development and CO2 CEE.pdf)
+[Zhang et al 2016 VECM.pdf](reading/Zhang et al 2016 VECM.pdf)
+[Tao et al.  (2023). How does financial development influence carbon emission intensity in the OECD countries.pdf](reading/Tao et al.  (2023). How does financial development influence carbon emission intensity in the OECD countries.pdf)
 
 
 ## Finans/Makro:
