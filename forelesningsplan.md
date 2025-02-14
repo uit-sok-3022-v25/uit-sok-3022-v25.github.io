@@ -2,7 +2,7 @@
 # Pensum
 
 ## Økonometri:
-[Li et al. (2021) DCC-GARCH.pdf](Li%20et%20al.%20%20(2021)%20DCC-GARCH.pdf)
+[Li et al. (2021) DCC-GARCH.pdf](reading/Li%20et%20al.%20%20(2021)%20DCC-GARCH.pdf)
 
 [Li et al.  (2021). Empirical study on CO2 emissions, financial development and economic growth of the BRICS countries.pdf](reading/Li%20et%20al.%20%20(2021).%20Empirical%20study%20on%20CO2%20emissions,%20financial%20development%20and%20economic%20growth%20of%20the%20BRICS%20countries.pdf)
 
