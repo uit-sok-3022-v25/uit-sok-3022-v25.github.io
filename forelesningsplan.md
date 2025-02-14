@@ -3,17 +3,17 @@
 
 ## Økonometri:
 
-[Li et al. (2021) DCC-GARCH.pdf](Li et al. (2021) DCC-GARCH.pdf)
+[Li et al. (2021) DCC-GARCH.pdf](Li%20et%20al.%20(2021)%20DCC-GARCH.pdf)
 
-[Li et al.  (2021). Empirical study on CO2 emissions, financial development and economic growth of the BRICS countries.pdf](reading/Li et al.  (2021). Empirical study on CO2 emissions, financial development and economic growth of the BRICS countries.pdf)
+[Li et al.  (2021). Empirical study on CO2 emissions, financial development and economic growth of the BRICS countries.pdf](reading/Li%20et%20al.%20%20(2021).%20Empirical%20study%20on%20CO2%20emissions,%20financial%20development%20and%20economic%20growth%20of%20the%20BRICS%20countries.pdf)
 
-[Sadorsky2010c_Impact of financial development increase energy consumption.pdf](reading/Sadorsky2010c_Impact of financial development increase energy consumption.pdf)
+[Sadorsky2010c_Impact of financial development increase energy consumption.pdf](reading/Sadorsky2010c_Impact%20of%20financial%20development%20increase%20energy%20consumption.pdf)
 
-[Saud2019x4_Nexus Between Financial Development and CO2 CEE.pdf](reading/Saud2019x4_Nexus Between Financial Development and CO2 CEE.pdf)
+[Saud2019x4_Nexus Between Financial Development and CO2 CEE.pdf](reading/Saud2019x4_Nexus%20Between%20Financial%20Development%20and%20CO2%20CEE.pdf)
 
-[Zhang et al 2016 VECM.pdf](reading/Zhang et al 2016 VECM.pdf)
+[Zhang et al 2016 VECM.pdf](reading/Zhang%20et%20al%202016%20VECM.pdf)
 
-[Tao et al.  (2023). How does financial development influence carbon emission intensity in the OECD countries.pdf](reading/Tao et al.  (2023). How does financial development influence carbon emission intensity in the OECD countries.pdf)
+[Tao et al.  (2023). How does financial development influence carbon emission intensity in the OECD countries.pdf](reading/Tao%20et%20al.%20(2023).%20How%20does%20financial%20development%20influence%20carbon%20emission%20intensity%20in%20the%20OECD%20countries.pdf)
 
 
 ## Finans/Makro:
