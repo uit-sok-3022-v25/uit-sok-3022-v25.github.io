@@ -2,8 +2,7 @@
 # Pensum
 
 ## Økonometri:
-
-[Li et al. (2021) DCC-GARCH.pdf](Li%20et%20al.%20(2021)%20DCC-GARCH.pdf)
+[Li et al. (2021) DCC-GARCH.pdf](Li%20et%20al.%20%20(2021)%20DCC-GARCH.pdf)
 
 [Li et al.  (2021). Empirical study on CO2 emissions, financial development and economic growth of the BRICS countries.pdf](reading/Li%20et%20al.%20%20(2021).%20Empirical%20study%20on%20CO2%20emissions,%20financial%20development%20and%20economic%20growth%20of%20the%20BRICS%20countries.pdf)
 
@@ -13,7 +12,7 @@
 
 [Zhang et al 2016 VECM.pdf](reading/Zhang%20et%20al%202016%20VECM.pdf)
 
-[Tao et al.  (2023). How does financial development influence carbon emission intensity in the OECD countries.pdf](reading/Tao%20et%20al.%20(2023).%20How%20does%20financial%20development%20influence%20carbon%20emission%20intensity%20in%20the%20OECD%20countries.pdf)
+[Tao et al.  (2023). How does financial development influence carbon emission intensity in the OECD countries.pdf](reading/Tao%20et%20al.%20%20(2023).%20How%20does%20financial%20development%20influence%20carbon%20emission%20intensity%20in%20the%20OECD%20countries.pdf)
 
 
 ## Finans/Makro:
@@ -24,10 +23,16 @@
 [Bollerslev, Tim. "Generalized autoregressive conditional heteroskedasticity." Journal of econometrics 31.3 (1986): 307-327.](reading/Bollerslev%20(1986).pdf)
 
 
+### DCC-GARCH:
+
+[Antonakakis, N., Cunado, J., Filis, G., Gabauer, D., & De Gracia, F. P. (2018). Oil volatility, oil and gas firms and portfolio diversification. Energy Economics, 70, 499-515.]
+
 ### Inflasjonsprediksjon:
 [Stock, James H., and Mark W. Watson. "Why has US inflation become harder to forecast?." Journal of Money, Credit and banking 39 (2007): 3-33.](reading/Stock%20and%20Watson%20(2007).pdf) (SW)
 
 
+### VCEM: 
+[Li, F., Wu, Y. C., Wang, M. C., Wong, W. K., & Xing, Z. (2021). Empirical study on CO2 emissions, financial development and economic growth of the BRICS countries. Energies, 14(21), 7341.]
 ### Permanentinntektshypotesen:
 [Campbell, John Y., and N. Gregory Mankiw. "International evidence on the persistence of economic fluctuations." Journal of Monetary Economics 23.2 (1989): 319-333.](reading/Campbell%20and%20Mankiw%20(1989).pdf) (CM)
 
