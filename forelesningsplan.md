@@ -48,9 +48,9 @@
 | 12        | 18.03.2025 | 10:15  | Dengjun Zhang | ARCH/GARCH                   |
 | 12        | 18.03.2025 | 13:15  | Dengjun Zhang | ARCH/GARCH                   |
 | 12        | 19.03.2025 | 10:15  | Dengjun Zhang | Presentation (mandatory)     |
-| 13        | 27.03.2025 | 12:15  | Espen Sirnes  | ARIMA - GARCH                |
+| 13        | 27.03.2025 | 12:15  | Espen Sirnes  | [Derivater](lectures_es/binomial_option.html)  [QMD](lectures_es/binomial_option.qmd)  [jupyter](lectures_es/binomial_option.ipynb) [PDF](lectures_es/binomial_option.pdf)               |
 | 14        | 01.04.2025 | 12:15  | Espen Sirnes  | Derivater                    |
-| 14        | 03.04.2025 | 12:15  | Espen Sirnes  | Derivater                    |
+| 14        | 03.04.2025 | 12:15  | Espen Sirnes  | Derivater/ARCH/GARCH                    |
 | 15        | 10.04.2025 | 12:15  | Espen Sirnes  | Makroøkonomi                 |
 | 17        | 23.04.2025 |        |               | Innlevering Case Derivater (Canvas)|
 | 17        | 24.04.2025 | 12:15  | Espen Sirnes  | Makroøkonomi                 |
