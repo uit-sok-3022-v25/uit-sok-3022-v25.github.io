@@ -300,13 +300,13 @@ Figure&nbsp;2: Put option cash flow
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>                          ha<span class="op">=</span><span class="st">'right'</span>, </span>
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>                          fontsize<span class="op">=</span><span class="dv">10</span>, </span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>                          color<span class="op">=</span><span class="st">'blue'</span>)</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>ax.text(S_mean <span class="op">+</span> <span class="fl">0.7</span>, <span class="fl">1.6</span>, <span class="st">"{"</span>, </span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">106</span>, <span class="dv">1</span>, <span class="st">"{"</span>, </span>
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>                          ha<span class="op">=</span><span class="st">'right'</span>, </span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>                          fontsize<span class="op">=</span><span class="dv">92</span>, </span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>                          fontsize<span class="op">=</span><span class="dv">90</span>, </span>
 <span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>                          color<span class="op">=</span><span class="st">'grey'</span>, </span>
 <span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>                          fontweight<span class="op">=</span><span class="st">'ultralight'</span>, </span>
 <span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>                          fontname<span class="op">=</span><span class="st">"serif"</span>)</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>ax.text(S_mean <span class="op">-</span> <span class="dv">3</span>, <span class="fl">2.5</span>, <span class="st">"Intrinsic value"</span>, </span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">102</span>, <span class="dv">2</span>, <span class="st">"Intrinsic value"</span>, </span>
 <span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>                          ha<span class="op">=</span><span class="st">'right'</span>, </span>
 <span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>                          fontsize<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>ax.text(S_mean <span class="op">+</span> <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="st">"call_payoff(E[S])"</span>, </span>
@@ -361,16 +361,16 @@ Figure&nbsp;3: Jensens inequality illustrated by a call option
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                                        <span class="op">*</span> norm.cdf(d2))</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">105.7</span>, <span class="fl">1.5</span> , <span class="st">"{"</span>, ha<span class="op">=</span><span class="st">'right'</span>, fontsize<span class="op">=</span><span class="dv">92</span>, </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">106</span>, <span class="fl">1.5</span> , <span class="st">"{"</span>, ha<span class="op">=</span><span class="st">'right'</span>, fontsize<span class="op">=</span><span class="dv">120</span>, </span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                      color<span class="op">=</span><span class="st">'grey'</span>, </span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                      fontweight<span class="op">=</span><span class="st">'ultralight'</span>, </span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                      fontname<span class="op">=</span><span class="st">"serif"</span>)</span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">97</span>, <span class="fl">2.4</span> , <span class="st">"Intrinsic value"</span>, ha<span class="op">=</span><span class="st">'right'</span>, </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">101</span>, <span class="fl">2.4</span> , <span class="st">"Intrinsic value"</span>, ha<span class="op">=</span><span class="st">'right'</span>, </span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                                        fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">102</span>, payoff_mean<span class="op">+</span><span class="dv">3</span> , <span class="st">"$C_t$"</span>, ha<span class="op">=</span><span class="st">'left'</span>, </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">110</span>, <span class="dv">13</span> , <span class="st">"$C_t$"</span>, ha<span class="op">=</span><span class="st">'left'</span>, </span>
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                                        fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">102</span>, <span class="dv">4</span> , <span class="st">"$C_T$"</span>, ha<span class="op">=</span><span class="st">'left'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">110</span>, <span class="dv">7</span> , <span class="st">"$C_T$"</span>, ha<span class="op">=</span><span class="st">'left'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>ax.plot(S,black_scholes_call(S, X, <span class="fl">0.25</span>, <span class="fl">0.05</span>, <span class="fl">0.37</span>), </span>
 <span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>      label<span class="op">=</span><span class="st">"Black and Scholes option price today"</span>)</span>
@@ -532,7 +532,7 @@ Try different combinations of call and put options, including those with differe
 \Delta \cdot (95 - 100 \cdot 1.05^{\frac{1}{2}}) = 0 - f_0 \cdot 1.05^{\frac{1}{2}}
 \tag{15}\]</span></span></p>
 <p>We now have two relatively simple equations with two unknowns, <span class="math inline">\(\Delta\)</span> and <span class="math inline">\(f_0\)</span>, which we can solve using sympy:</p>
-<div id="bc9b4b7f" class="cell" data-execution_count="7">
+<div id="6b1b9265" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-import necessary libraries since execution state was reset</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display, Markdown</span>
@@ -613,7 +613,7 @@ f_0 \approx 3.645
 </table>
 <p>Here, the subscripts <em>u</em> and <em>d</em> represent the up and down movements of the stock, respectively. We use a general variable <span class="math inline">\(f\)</span> that can stand for both a put (<span class="math inline">\(P\)</span>) and a call option (<span class="math inline">\(C\)</span>). Additionally, we define two variables, <span class="math inline">\(u\)</span> and <span class="math inline">\(d\)</span>, which represent the relative movement of the stock price when it increases or decreases.</p>
 <p>In our example, we are considering an option with a strike price <span class="math inline">\(X = 105\)</span>, where the stock can either rise to <span class="math inline">\(S_u = 115\)</span> or fall to <span class="math inline">\(S_d = 95\)</span> from <span class="math inline">\(S_0=100\)</span>. The interest rate is <span class="math inline">\(r=0.05\)</span> and time to expiration is <span class="math inline">\(T=0.5\)</span>, so</p>
-<div id="78d8163e" class="cell" data-execution_count="8">
+<div id="4d8a73b2" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>S_u <span class="op">=</span> <span class="dv">115</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>S_d <span class="op">=</span> <span class="dv">95</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>S_0 <span class="op">=</span> <span class="dv">100</span></span>
@@ -661,7 +661,7 @@ q=\frac{(1+r)^T-d}{u-d}
 \mathbb{E}_q[S_T] = S_u \cdot q + S_d \cdot (1-q) = S_0 \cdot (1+r)^T
 \tag{25}\]</span></span></p>
 <p>We can verify this with sympy:</p>
-<div id="f8a6bcfe" class="cell" data-execution_count="9">
+<div id="04c9617a" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define symbols</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Su, Sd, S0, r, T, q <span class="op">=</span> sp.symbols(<span class="st">'Su Sd S0 r T q'</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -673,7 +673,7 @@ q=\frac{(1+r)^T-d}{u-d}
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># The expected stock price under risk neutral probability</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>sp.simplify(Su <span class="op">*</span> q <span class="op">+</span> Sd <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> q))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="27">
 <p><span class="math inline">\(\displaystyle S_{0} \left(r + 1\right)^{T}\)</span></p>
 </div>
 </div>
@@ -707,7 +707,7 @@ f_0=\frac{q \cdot f_u + (1-q) \cdot f_d}{(1+r)^T}
 <section id="using-the-general-binomial-formula" class="level2">
 <h2 class="anchored" data-anchor-id="using-the-general-binomial-formula">Using the General Binomial Formula</h2>
 <p>Let us apply the numbers from our example to the general binomial formula to calculate the value of the option. We will then compare the result with the solutions <span class="math inline">\(\Delta = \tfrac{1}{2}\)</span> and <span class="math inline">\(f_0 \approx 3.645\)</span> obtained from solving the equations (<a href="#eq-no_arbitrage_up" class="quarto-xref">12</a>) and (<a href="#eq-no_arbitrage_down" class="quarto-xref">15</a>).</p>
-<div id="40e83287" class="cell" data-execution_count="10">
+<div id="db6b46b1" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display, Markdown</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>S_u <span class="op">=</span> <span class="dv">115</span></span>
@@ -844,11 +844,11 @@ Figure&nbsp;8: Intraday prices for Equinor
 \]</span></p>
 <p>However, using log differences instead of percentage differences has a key advantage: the latter is <em>not symmetric</em>. If a stock price increases by 10% and then decreases by 10%, it does not return to its original level. In contrast, with log differences, a 10% increase followed by a 10% decrease brings the stock price <em>exactly</em> back to its starting point.</p>
 <p>Log differences are closely related to <em>continuous compounding</em> and the <em>exponential function</em>. Since the logarithm is the inverse of the exponential function, the following identity holds for any <span class="math inline">\(x\)</span>:</p>
-<div id="e77a6e33" class="cell" data-execution_count="13">
+<div id="10c22a39" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">23.434</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>np.exp(np.log(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>23.434</code></pre>
 </div>
 </div>
@@ -889,11 +889,11 @@ var(\sigma \cdot \Delta z_t) = \sigma^2 \cdot \Delta t
 <p>This means that the variance of each period in the Wiener Process <span class="math inline">\(z_t\)</span> is directly proportional to the length of the period.</p>
 <p>In the specific dataset used for <a href="#fig-intraday" class="quarto-xref">Figure&nbsp;7</a>, the time intervals between observations vary because the data is based on transaction records. The time period is determined by the actual time elapsed between consecutive data points. However, in most financial models, <span class="math inline">\(\Delta t\)</span> is typically assumed to be constant.</p>
 <p>For simplicity, in the simulation shown in <a href="#fig-intraday_sim" class="quarto-xref">Figure&nbsp;8</a>, we assume that the time step between observations is fixed at <span class="math inline">\(\Delta t = 1\)</span>. To create a process that closely replicates Equinor’s price movements, we estimate the period volatility using the standard deviation of the log price differences between observations:</p>
-<div id="9b61240b" class="cell" data-execution_count="14">
+<div id="dd98e714" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> np.log(df[<span class="st">'PRIS'</span>]).diff().std()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The implementation of the innovation term from (<a href="#eq-sigma_delta_zt" class="quarto-xref">34</a>) in the code is then:</p>
-<div id="8813508d" class="cell" data-execution_count="15">
+<div id="997df4a5" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">*</span> np.random.randn(<span class="bu">len</span>(df))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here, <code>np.random.randn(len(df))</code> generates random draws from a standard normal distribution, representing <span class="math inline">\(\varepsilon_{t}\)</span>, while multiplying by <code>sigma</code> scales the randomness according to the estimated volatility of the stock price.</p>
@@ -903,7 +903,7 @@ var(\sigma \cdot \Delta z_t) = \sigma^2 \cdot \Delta t
 <p>The stock price is expected to change by a certain percentage each period. This expectation is captured by a drift term <span class="math inline">\(\mu\)</span>, which represents the average rate of return per time unit. On average, the stock price is expected to increase by <span class="math inline">\(\mu \Delta t\)</span> in each period.</p>
 <p>By combining this deterministic drift term with the stochastic Wiener process, we obtain the full stock price process.</p>
 <p>In the code for <a href="#fig-intraday" class="quarto-xref">Figure&nbsp;7</a>, the drift term is estimated as the mean log price change of Equinor throughout the trading day:</p>
-<div id="98550d76" class="cell" data-execution_count="16">
+<div id="61a64fed" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> np.log(df[<span class="st">'PRIS'</span>]).diff().mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Mathematicaly the drift can be written</p>
@@ -946,7 +946,7 @@ S_t = S_0 \cdot e^{\mu \cdot t + \sigma \cdot z_t}
 S_t = S_0 \cdot e^{\mu \cdot t - \tfrac{1}{2} \sigma^2 \cdot t + \sigma \cdot z_t}
 \tag{43}\]</span></span></p>
 <p>Using (<a href="#eq-logdiff_model" class="quarto-xref">42</a>), the Python implementation therefore becomes</p>
-<div id="62b957c7" class="cell" data-execution_count="17">
+<div id="64ac2b2b" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dlnS <span class="op">=</span> (mu <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> sigma<span class="op">**</span><span class="dv">2</span> </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> sigma <span class="op">*</span> np.random.randn(<span class="bu">len</span>(df)))</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -981,7 +981,7 @@ d_2 = d_1 - \sigma \sqrt{T}
 <section id="nummerical-approximation" class="level2">
 <h2 class="anchored" data-anchor-id="nummerical-approximation">Nummerical approximation</h2>
 <p>If you want to price your own derivative, you can take inspiration from this nummerical calcualation of the integral above:</p>
-<div id="ee131ee8" class="cell" data-execution_count="18">
+<div id="2ab43462" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-import necessary libraries since execution state was reset</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.integrate <span class="im">as</span> integrate</span>
@@ -1014,7 +1014,7 @@ d_2 = d_1 - \sigma \sqrt{T}
 <span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Display results</span></span>
 <span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>f0_numerical, bs_price, <span class="bu">abs</span>(f0_numerical <span class="op">-</span> bs_price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>(10.45058357240781, 10.450583572185565, 2.2224533324788354e-10)</code></pre>
 </div>
 </div>

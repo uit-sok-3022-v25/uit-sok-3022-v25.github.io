@@ -167,13 +167,13 @@ ax.text(S_mean - 1, payoff_mean, "E[call_payoff(S)]",
                           ha='right', 
                           fontsize=10, 
                           color='blue')
-ax.text(S_mean + 0.7, 1.6, "{", 
+ax.text(106, 1, "{", 
                           ha='right', 
-                          fontsize=92, 
+                          fontsize=90, 
                           color='grey', 
                           fontweight='ultralight', 
                           fontname="serif")
-ax.text(S_mean - 3, 2.5, "Intrinsic value", 
+ax.text(102, 2, "Intrinsic value", 
                           ha='right', 
                           fontsize=10)
 ax.text(S_mean + 1, 0.5, "call_payoff(E[S])", 
@@ -223,16 +223,16 @@ def black_scholes_call(S, X, T, r, sigma):
                                         * norm.cdf(d2))
 
 
-ax.text(105.7, 1.5 , "{", ha='right', fontsize=92, 
+ax.text(106, 1.5 , "{", ha='right', fontsize=120, 
                       color='grey', 
                       fontweight='ultralight', 
                       fontname="serif")
 
-ax.text(97, 2.4 , "Intrinsic value", ha='right', 
+ax.text(101, 2.4 , "Intrinsic value", ha='right', 
                                         fontsize=10)
-ax.text(102, payoff_mean+3 , "$C_t$", ha='left', 
+ax.text(110, 13 , "$C_t$", ha='left', 
                                         fontsize=12)
-ax.text(102, 4 , "$C_T$", ha='left', fontsize=12)
+ax.text(110, 7 , "$C_T$", ha='left', fontsize=12)
 
 ax.plot(S,black_scholes_call(S, X, 0.25, 0.05, 0.37), 
       label="Black and Scholes option price today")
