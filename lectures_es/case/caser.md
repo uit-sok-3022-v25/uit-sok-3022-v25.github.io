@@ -1,3 +1,4 @@
+{% include navbar.html %}{% include top-box.html %}
 # Del I: Finans
 
 VIKTIG: All kode må legges ved, og du må forsikre deg om at den kjører utenfor ditt utviklermiljø. Du kan forvente at bruker må installere pakker for å kjøre koden din. 
