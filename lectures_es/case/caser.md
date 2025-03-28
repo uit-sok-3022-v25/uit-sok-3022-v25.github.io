@@ -5,7 +5,7 @@ VIKTIG: All kode må legges ved, og du må forsikre deg om at den kjører utenfo
 ## Oppgave 1: prediker opsjonskurs
 
 Data: [AEGON NV data](derivative.csv)
-Informasjon om opsjonen: [AEGON NV info](info_option.csv)
+Informasjon om opsjonen: [AEGON NV info](info_option.html)
 
 
 ### Problemstilling:
