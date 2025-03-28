@@ -78,6 +78,9 @@ Denne besvarelsen trenger heller ikke være spesielt lang, men den skal innehold
   * Vis grafisk hvordan kontraktens verdi har utviklet seg over tid, og hvordan den endrer seg med endringer volatilitet og og underliggende.
   
 
+# Del II: Makro
+  * Prediker inflasjon
+  * Mer info kommer
 
 # Vurderingskriterier
 

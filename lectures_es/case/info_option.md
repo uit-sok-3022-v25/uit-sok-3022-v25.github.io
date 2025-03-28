@@ -1,3 +1,4 @@
+{% include navbar.html %}{% include top-box.html %}
 # AEGON NV (AEGON) Opsjonsinformasjon
 
 AEGON NV (AEGON) er et multinasjonalt livsforsikrings-, pensjons- og kapitalforvaltningsselskap med hovedkontor i Haag, Nederland. Selskapet ble grunnlagt i 1983 og opererer i mer enn 20 land i Amerika, Europa og Asia. AEGON er notert på Euronext Amsterdam og er en del av AEX-indeksen. Selskapet har en markedsverdi på rundt €10 milliarder.
