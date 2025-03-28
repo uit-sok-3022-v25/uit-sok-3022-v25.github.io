@@ -96,6 +96,9 @@ Denne besvarelsen trenger heller ikke være spesielt lang, men den skal innehold
 - **Argumentasjon og drøfting**  
   Studenten skal kunne begrunne valg av metoder og parametere, samt diskutere styrker og svakheter ved modellene, dataene og resultatene på en kritisk og reflektert måte.
 
+- **Kode**
+  Koden skal kjøre uten problemer og være godt strukturert og kommentert. 
+
 ## Karakterbeskrivelser
 
 - **A (Fremragende)**: Studenten viser fullstendig mestring av metodene og en dyptgående forståelse av de teoretiske konseptene. Argumentasjonen er velbegrunnet og viser innsikt som går utover grunnleggende krav. Studenten demonstrerer en helhetlig og bred forståelse, samt evnen til å integrere ulike analyser på en sammenhengende måte.
