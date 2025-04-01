@@ -984,9 +984,7 @@ plt.show()
 
 ```
 
-Great point — thanks for the clarification! Here's the revised version with proper `{python}` code block tags so it works in Quarto/Markdown environments like Jupyter Book, Quarto documents, or R Markdown:
 
----
 
 ### A Simple Function for Valuing a Derivative
 
