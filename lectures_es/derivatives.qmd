@@ -630,7 +630,7 @@ import matplotlib.dates as mdates
 import numpy as np
 
 # Read the data
-df = pd.read_csv('../data/'
+df = pd.read_csv('data/'
             'equinor_intraday_240325.csv')
 df['TID'] = pd.to_datetime(df['TID'], 
                         format='%H:%M:%S')
@@ -882,7 +882,7 @@ Here, `np.cumsum(dlnS)` computes the cumulative sum of log changes across all ob
 
 # Risk neutral pricing
 
-In the original papers, the derivation of the Black and Scholes option pricing formula, uses som pretty fancy math and sophisticated theory. However, if we know that we can price any derivative using risk neutral expectations, it becomes quite easy to price any derivative. 
+In the original papers, the derivation of the Black and Scholes option pricing formula, uses som pretty fancy math and sophisticated theory. However, if we know that we can price any derivative using risk neutral expectations, it becomes easier to understand how derivatives are priced. 
 
 For example the Black-Scholes-Merton option pricing fomula can be obtained by applying risk netural pricing. That involves calculating this integral
 
@@ -922,45 +922,199 @@ $\Phi$ is the cumulative standard normal distribution function.
 
 
 
-## Nummerical approximation
+Here’s an improved version of your section for clarity, flow, and grammar, while keeping the technical content intact:
 
-If you want to price your own derivative, you can take inspiration from this nummerical calcualation of the integral above:
+---
+
+## Numerical Approximation
+
+Knowing that we can price derivatives using risk-neutral expectations means that we can, in principle, determine the fair value of almost any contract written on tradable assets. The expected value is defined as the sum of outcomes (or events) weighted by their probabilities. For example, the expected value of a die roll is:
+
+$$
+(1+2+3+4+5+6) \cdot \frac{1}{6} = 3.5
+$${#eq-dice}
+
+that is, each outcome multiplied by its probability, summed over all outcomes.
+
+As mentioned above, when we are dealing with a continuous distribution such as the normal distribution, the discrete concept of a probability is replaced by the probability density $\phi(x)$ multiplied by a small interval $dx$. The outcome is the derivative’s value, and the summation becomes an integral.
+
+However, solving such integrals analytically is often difficult or impossible. In practice, it is therefore common to compute the integral numerically. This involves converting the continuous distribution into a discrete one, allowing us to approximate the integral using a finite sum over discrete probabilities and outcomes.
+
+This discretization means dividing the range of outcomes into intervals and calculating the probability mass in each interval. In other words, we approximate the continuous probability density by a histogram-like representation.
+
+This process is illustrated in @fig-nummerical_approx. Each bar represents the probability of an outcome falling within a given interval. We can then approximate the expected value by multiplying each outcome $x$ by its associated probability, $\phi(x) \cdot dx$, where $dx$ is the interval width. In this case, the range is defined as ±5 standard deviations, divided into 30 intervals.
+
+
 
 ```{python}
-# Re-import necessary libraries since execution state was reset
+#| label: fig-nummerical_approx
+#| fig-cap: "Nummerica approximation of normal distribution"
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
+# Parameters
+mu = 0.15  # Risk-free rate
+sigma = 0.2  # Volatility
+width = 5
+N = 30
+
+# Define the range for x
+dx = width*sigma/((N-1)*0.5)
+x = np.arange(mu - 4*sigma, mu + width*sigma, dx)
+x_fine = np.linspace(mu - width*sigma, mu + width*sigma, 1000)
+
+
+# PDF values
+pdf = norm.pdf(x, mu, sigma)
+pdf_fine = norm.pdf(x_fine, mu, sigma)
+
+
+# Plot
+plt.figure(figsize=(10, 6))
+plt.plot(x_fine, pdf_fine, label='Normal PDF', color='blue')
+plt.bar(x, pdf, width=dx, alpha=0.5, align='center', label='PDF * dx (approximation)', edgecolor='black')
+plt.title('Numerical Approximation of Expectation using PDF * dx')
+plt.xlabel('x')
+plt.ylabel('Density')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+```
+
+Great point — thanks for the clarification! Here's the revised version with proper `{python}` code block tags so it works in Quarto/Markdown environments like Jupyter Book, Quarto documents, or R Markdown:
+
+---
+
+### A Simple Function for Valuing a Derivative
+
+To compute the expected value of a derivative, we need to evaluate the probability of each small interval on the $x$-axis and multiply it by the corresponding derivative payoff. For a simple normally distributed variable, the probability of each interval can be approximated as:
+
+```{python}
+import scipy.stats as stats
+p = stats.norm.pdf(x, mu, sigma) * dx
+```
+
+However, as we saw when modeling the stock price process, the mean is not simply $\mu$, and the volatility is not simply $\sigma$. According to Equation @eq-final_price_model, after adjusting for the time to maturity and the volatility correction, the mean of the log return becomes:
+
+$$
+(\mu - \tfrac{1}{2} \sigma^2) \cdot T
+$${#eq-mean_stockprocess}
+
+Since we are working under the risk-neutral measure, we replace the expected return $\mu$ with the risk-free rate $r$, resulting in:
+
+$$
+(r - \tfrac{1}{2} \sigma^2) \cdot T
+$${#eq-riskneutral_mean}
+
+The corresponding volatility over the time horizon $T$ becomes:
+
+$$
+\sigma \cdot \sqrt{T}
+$${#eq-volatility_scaled}
+
+With these substitutions, the discrete risk-neutral probability distribution used to price a derivative is:
+
+```{python}
+import scipy.stats as stats
+p = stats.norm.pdf(x, (r - 0.5 * sigma**2) * T, sigma * np.sqrt(T)) * dx
+```
+
+Using this setup, we can now define a simple and general function for computing the risk-neutral expected value of a derivative with terminal payoff $f(S_T)$:
+
+```{python}
+import numpy as np
+import scipy.stats as stats
+
+def derivative_value_risk_neutral(f, S0, sigma, r, T, N=1000, width=5):
+    """
+    Numerically computes the risk-neutral value of a derivative with payoff function f(S_T).
+    
+    Parameters:
+    - f: Payoff function f(S_T)
+    - S0: Initial stock price
+    - sigma: Volatility
+    - r: Risk-free interest rate
+    - T: Time to maturity
+    - N: Number of intervals for numerical integration
+    - width: Number of standard deviations to cover on each side
+    
+    Returns:
+    - Present value of the derivative
+    """
+    vol_T = sigma * np.sqrt(T)
+    mu_T = (r - 0.5 * sigma**2) * T
+
+    x = np.linspace(-width * vol_T, width * vol_T, N)
+    dx = x[1] - x[0]
+    
+    ST = S0 * np.exp(x)
+    p = stats.norm.pdf(x, mu_T, vol_T) * dx
+    
+    pv = np.exp(-r * T) * np.sum(f(ST) * p)
+    return pv
+```
+
+This function allows you to numerically evaluate the fair value of any derivative written on the terminal asset price $S_T$, using risk-neutral expectations.
+
+
+```{python}
+import scipy.stats as stats
+def derivative_value_risk_neutral(f, S0, sigma, r, T, N = 1000, width = 5):
+    "Calculates the risk neutral value of f"
+    x = np.linspace(-width*sigma*(T**0.5), width*sigma*(T**0.5), N)
+    dx = width*sigma*(T**0.5)/((N-1)*0.5)
+    p = stats.norm.pdf(x, (r-0.5*sigma**2)*T, sigma*(T**0.5))*dx
+      
+    pv = np.exp(-r*T)*np.sum(f(S0*np.exp(x))*p)
+
+    return pv
+```
+
+### Testing the derivative valuation function
+Now, let us test if this function works. We can do that by comparing it with the known Black&Scholes formula. The following defines the terminal value of the call option, and the Black&Scholes formula:
+
+```{python}
+import scipy.stats as stats
+X = 105   # Strike price
+def call_option(ST):
+    # Call option payoff function
+    
+    return np.maximum(ST - X, 0)
+
+
+
+def black_scholes(S0, X, r, sigma, T):
+    d1 = (np.log(S0/X) + (r + 0.5*sigma**2)*T)/(sigma*(T**0.5))
+    d2 = d1 - sigma*(T**0.5)
+    return S0*stats.norm.cdf(d1) - X*np.exp(-r*T)*stats.norm.cdf(d2)	
+
+```
+
+
+```{python}
 import numpy as np
 import scipy.integrate as integrate
 import scipy.stats as stats
 
 # Define parameters
 S0 = 100  # Initial stock price
-X = 100   # Strike price
+
 r = 0.05  # Risk-free rate
 sigma = 0.2  # Volatility
 T = 1  # Time to maturity (1 year)
 
-# Define the integrand function
-def integrand(epsilon):
-    ST = S0 * np.exp((r - 0.5 * sigma**2) * T + sigma * np.sqrt(T) * epsilon)
-    payoff = np.maximum(ST - X, 0)  # Call option payoff
-    pdf = stats.norm.pdf(epsilon)  # Standard normal density function
-    return payoff * pdf
 
-# Compute the integral numerically
-integral_value, error = integrate.quad(integrand, -np.inf, np.inf)
+f0_num = derivative_value_risk_neutral(call_option, S0, sigma, r, T)
+f0_bs = black_scholes(S0, X, r, sigma, T)
 
-# Compute the discounted expectation
-f0_numerical = np.exp(-r * T) * integral_value
-
-# Compute the Black-Scholes closed-form solution for comparison
-d1 = (np.log(S0 / X) + (r + 0.5 * sigma**2) * T) / (sigma * np.sqrt(T))
-d2 = d1 - sigma * np.sqrt(T)
-bs_price = S0 * stats.norm.cdf(d1) - X * np.exp(-r * T) * stats.norm.cdf(d2)
-
-# Display results
-f0_numerical, bs_price, abs(f0_numerical - bs_price)
-
+print(f"Numerical integral result: {f0_num}")
+print(f"Black-Scholes result: {f0_bs}")
+# Check if the results are close	
+assert np.isclose(f0_num, f0_bs, atol=1e-4), "The results are not close!"
 
 ```
 
-
+As we can see, our discrete valuation function works very well. With this simple approach, we can accurately value any contract written on the terminal asset price $S_T$.
