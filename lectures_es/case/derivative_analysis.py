@@ -16,7 +16,7 @@ pt.options.supress_output = True
 
 def main():
 
-	df = pd.read_csv(f'{FLDR}/data/derivative.csv', sep=';')
+	df = pd.read_csv(f'{FLDR}/derivative.csv', sep=';')
 	df = df.sort_values('date')
 	df['dp'] = np.log(df['Adjusted Price']).diff()
 	

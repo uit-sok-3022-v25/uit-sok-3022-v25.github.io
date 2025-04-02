@@ -5,24 +5,24 @@ date: "2025-3-24"
 pdf-engine: pdflatex
 bibliography: references.bib
 format:
-  pdf:
-    number-sections: true
-    geometry: [left=4cm, right=4cm, top=4cm, bottom=4cm]
-    fontsize: 12pt
-    fontfamily: times
-    monofont: "Courier New"
-    documentclass: article
-    toc: true
-    fig-cap: true
-    fig-pos: H
-    titlepage: true
-    titlepage-text-color: "000000"
-    titlepage-rule-color: "000000"
-    titlepage-rule-height: 2
-    equation-numbering: true
-  html: 
-    equation-numbering: true
-  ipynb: default
+    pdf:
+        number-sections: true
+        geometry: [left=4cm, right=4cm, top=4cm, bottom=4cm]
+        fontsize: 12pt
+        fontfamily: times
+        monofont: "Courier New"
+        documentclass: article
+        toc: true
+        fig-cap: true
+        fig-pos: H
+        titlepage: true
+        titlepage-text-color: "000000"
+        titlepage-rule-color: "000000"
+        titlepage-rule-height: 2
+        equation-numbering: true
+    html: 
+        equation-numbering: true
+    ipynb: default
 ---
 
 This note provides an introduction to derivative pricing. In finance, a derivative is an asset or contract whose value depends on another asset. Consequently, the value of a derivative is a function of the underlying asset’s value. If the value of the underlying share is known, the exercise value of an option can be determined immediately.
@@ -71,30 +71,30 @@ X = 105  # strike price
 
 # Plot the cash flow
 def create_canvas(title):
-    S = np.linspace(80, 120, 100)
-    
-    # Create figure and axis objects
-    fig, ax = plt.subplots(figsize=(8, 5))
-    
-    # Plot the call option payoff
-    ax.axhline(0, color='black', linewidth=0.5, 
-                                      linestyle='--')
-    ax.axvline(X, color='red', linestyle='--', 
-                        label=f"Strike Price (X={X})")
+        S = np.linspace(80, 120, 100)
+        
+        # Create figure and axis objects
+        fig, ax = plt.subplots(figsize=(8, 5))
+        
+        # Plot the call option payoff
+        ax.axhline(0, color='black', linewidth=0.5, 
+                                linestyle='--')
+        ax.axvline(X, color='red', linestyle='--', 
+                    label=f"Strike Price (X={X})")
 
-    # Labels and title
-    ax.set_xlabel("Stock Price (S)")
-    ax.set_ylabel("Payoff")
-    ax.set_title(title)
-    ax.legend()
+        # Labels and title
+        ax.set_xlabel("Stock Price (S)")
+        ax.set_ylabel("Payoff")
+        ax.set_title(title)
+        ax.legend()
 
-    # Return figure, axis, and stock price
-    return ax, S  
+        # Return figure, axis, and stock price
+        return ax, S  
 
 ax, S = create_canvas("Cash Flow of a Call Option")
 call_payoff = np.maximum(S - X, 0) #call option payoff
 ax.plot(S, call_payoff, label="Call Option Payoff", 
-                                          linewidth=2)
+                                                                                    linewidth=2)
 ```
 
 
@@ -111,7 +111,7 @@ This is illustrated in @fig-put_option. To represent the put option, we simply m
 ax, S = create_canvas("Cash Flow of a Put Option")
 put_payoff = np.maximum(X - S, 0) #put option payoff
 ax.plot(S, put_payoff, label="Put Option Payoff", 
-                                        linewidth=2)
+                                                                                linewidth=2)
 ```
 
 Thus, we see that the immediate exercise value of an option is the difference between the share price and the exercise price X. In the case of a put option, there is no payment when the share price is greater than X, while for a call option, the option is worthless when the stock price is lower than X.
@@ -148,13 +148,13 @@ payoff_mean = (payoff_left + payoff_right) / 2
 # Add scatter points illustrating the two sample 
 # payoffs
 ax.scatter([S_left, S_right],[payoff_left,payoff_right], 
-      color='blue', label="Sampled Payoffs", zorder=3)
+        color='blue', label="Sampled Payoffs", zorder=3)
 
 # Draw a line between the two points to indicate the 
 # mean of 
 # payoffs
 ax.plot([S_left,S_right], [payoff_left,payoff_right], 
-                    color='blue', linestyle='dashed')
+                     color='blue', linestyle='dashed')
 
 # Scatter point for the payoff at the mean stock price
 ax.scatter(S_mean, payoff_mean, color='blue',
@@ -164,22 +164,22 @@ ax.scatter(S_mean, 0, color='red',
 
 # Annotate points
 ax.text(S_mean - 1, payoff_mean, "E[call_payoff(S)]", 
-                          ha='right', 
-                          fontsize=10, 
-                          color='blue')
+                            ha='right', 
+                            fontsize=10, 
+                            color='blue')
 ax.text(106, 1, "{", 
-                          ha='right', 
-                          fontsize=90, 
-                          color='grey', 
-                          fontweight='ultralight', 
-                          fontname="serif")
+                            ha='right', 
+                            fontsize=90, 
+                            color='grey', 
+                            fontweight='ultralight', 
+                            fontname="serif")
 ax.text(102, 2, "Intrinsic value", 
-                          ha='right', 
-                          fontsize=10)
+                            ha='right', 
+                            fontsize=10)
 ax.text(S_mean + 1, 0.5, "call_payoff(E[S])", 
-                          ha='left', 
-                          fontsize=10, 
-                          color='red')
+                            ha='left', 
+                            fontsize=10, 
+                            color='red')
 
 # Show updated plot
 ax.legend()
@@ -213,29 +213,29 @@ ax.plot(S, call_payoff,
                 linewidth=2)
 
 def black_scholes_call(S, X, T, r, sigma):
-    d1 = (
-          (np.log(S / X) + (r + 0.5 * sigma**2) * T) 
-                                  / (sigma * np.sqrt(T))
-          )
-    d2 = d1 - sigma * np.sqrt(T)
+        d1 = (
+    (np.log(S / X) + (r + 0.5 * sigma**2) * T) 
+                        / (sigma * np.sqrt(T))
+                    )
+        d2 = d1 - sigma * np.sqrt(T)
 
-    return (S * norm.cdf(d1) - X * np.exp(-r * T) 
-                                        * norm.cdf(d2))
+        return (S * norm.cdf(d1) - X * np.exp(-r * T) 
+                        * norm.cdf(d2))
 
 
 ax.text(106, 1.5 , "{", ha='right', fontsize=120, 
-                      color='grey', 
-                      fontweight='ultralight', 
-                      fontname="serif")
+                                color='grey', 
+                                fontweight='ultralight', 
+                                fontname="serif")
 
 ax.text(101, 2.4 , "Intrinsic value", ha='right', 
-                                        fontsize=10)
+                                    fontsize=10)
 ax.text(110, 13 , "$C_t$", ha='left', 
-                                        fontsize=12)
+                                    fontsize=12)
 ax.text(110, 7 , "$C_T$", ha='left', fontsize=12)
 
 ax.plot(S,black_scholes_call(S, X, 0.25, 0.05, 0.37), 
-      label="Black and Scholes option price today")
+            label="Black and Scholes option price today")
 ax.legend()
 
 ```
@@ -245,19 +245,19 @@ The "intrinsic value" here, is then the Black and Scholes fair value in excess o
 ***Problems:***
 
 - Change the Black and Scholes figure to show a put option. The formula for the Black and Scholes put is
-  $$
-  P(S, X, T, r, \sigma) = X e^{-rT} \Phi(-d_2) - S \Phi(-d_1)
-  $${#eq-bs_put}
-  where
-  $$
-  d_1 = \frac{\ln(S / X) + \left(r + \frac{1}{2} \sigma^2 \right)T}{\sigma \sqrt{T}}
-  $${#eq-bs_put}
-  and
-  $$
-  d_2 = d_1 - \sigma \sqrt{T}
-  $${#eq-bs_put}
+    $$
+    P(S, X, T, r, \sigma) = X e^{-rT} \Phi(-d_2) - S \Phi(-d_1)
+    $${#eq-bs_put}
+    where
+    $$
+    d_1 = \frac{\ln(S / X) + \left(r + \frac{1}{2} \sigma^2 \right)T}{\sigma \sqrt{T}}
+    $${#eq-bs_put}
+    and
+    $$
+    d_2 = d_1 - \sigma \sqrt{T}
+    $${#eq-bs_put}
 
-  $\Phi$ is the cumulative standard normal distribution function. 
+    $\Phi$ is the cumulative standard normal distribution function. 
 
 - Which of the arguments in the Black and Scholes formula are most difficult to estimate?
 
@@ -265,8 +265,8 @@ The "intrinsic value" here, is then the Black and Scholes fair value in excess o
 
 Sometimes an option can be exercised at any time up to the terminal date. We therefore distinguish between two types of options:
 
-  * **American option**: The option holder can choose whether to exercise the option at any time before the terminal date.
-  * **European option**: The option can only be exercised on the terminal date.
+    * **American option**: The option holder can choose whether to exercise the option at any time before the terminal date.
+    * **European option**: The option can only be exercised on the terminal date.
 
 In addition to buying options, investors may also sell options short in the market, a process known as issuing options. In this case, the cash flow will be the exact opposite of what the buyer receives, as illustrated below. The buyer (owner) receives the same cash flow as previously shown, while the seller has an obligation rather than a right. Therefore, the issuer's cash flow is a mirror image of the buyer's.
 
@@ -296,9 +296,9 @@ call_payoff = np.maximum(S - X, 0) #call option payoff
 put_payoff = np.maximum(X-S, 0) #call option payoff
 
 ax.plot(S, call_payoff, label="Call Option Payoff", 
-                                        linewidth=3)
+                                    linewidth=3)
 ax.plot(S, -put_payoff, label="Put Option Payoff", 
-                                        linewidth=3)
+                                    linewidth=3)
 ax.plot(S, call_payoff-put_payoff + 1, 
                 label="$C_t-P_t$ Payoff", linewidth=3)
 ax.plot(S, S-X - 1, label="$S-X$ Payoff", linewidth=3)
@@ -326,7 +326,7 @@ call_payoff = np.maximum(S - X, 0) #call option payoff
 put_payoff = np.maximum(X-S, 0) #call option payoff
 
 ax.plot(S, -call_payoff-put_payoff+8, 
-            label="Issued call and put", linewidth=3)
+                        label="Issued call and put", linewidth=3)
 ax.legend()
 
 ```
@@ -410,7 +410,6 @@ $${#eq-no_arbitrage_down}
 We now have two relatively simple equations with two unknowns, $\Delta$ and $f_0$, which we can solve using sympy:
 
 ```{python}
-# Re-import necessary libraries since execution state was reset
 import sympy as sp
 from IPython.display import display, Markdown
 
@@ -418,8 +417,10 @@ from IPython.display import display, Markdown
 Delta, f0 = sp.symbols('Delta f0')
 
 # Define the equations
-eq1 = sp.Eq(Delta * (95 - 100 * 1.05**(1/2)), 0 - f0 * 1.05**(1/2))
-eq2 = sp.Eq(Delta * (115 - 100 * 1.05**(1/2)), 10 - f0 * 1.05**(1/2))
+eq1 = sp.Eq(Delta * (95 - 100 * 1.05**(1/2)), 
+                            0 - f0 * 1.05**(1/2))
+eq2 = sp.Eq(Delta * (115 - 100 * 1.05**(1/2)), 
+                            10 - f0 * 1.05**(1/2))
 
 # Solve for Delta and f0
 sol = sp.solve((eq1, eq2), (Delta, f0))
@@ -541,7 +542,8 @@ d = Sd/S0
 
 q = ((1+r)**T-d)/(u-d)
 
-# The expected stock price under risk neutral probability
+# The expected stock price under risk neutral 
+# probability
 sp.simplify(Su * q + Sd * (1 - q))
 
 ```
@@ -631,9 +633,9 @@ import numpy as np
 
 # Read the data
 df = pd.read_csv('data/'
-            'equinor_intraday_240325.csv')
+                'equinor_intraday_240325.csv')
 df['TID'] = pd.to_datetime(df['TID'], 
-                        format='%H:%M:%S')
+                            format='%H:%M:%S')
 df = df.sort_values('TID')
 df=df[df['TID']>=pd.to_datetime('9:00:00', 
                             format='%H:%M:%S')]
@@ -641,22 +643,25 @@ df=df[df['TID']<=pd.to_datetime('16:00:00',
                             format='%H:%M:%S')]	
 
 def create_canvas():
-  # Create figure and axis objects
-  fig, ax = plt.subplots(figsize=(10, 5))
+    # Create figure and axis objects
+    fig, ax = plt.subplots(figsize=(10, 5))
 
-  # Set major ticks to round hours every hour
-  ax.xaxis.set_major_locator(mdates.HourLocator(interval=1))
-  ax.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
+    # Set major ticks to round hours every hour
+    ax.xaxis.set_major_locator(
+        mdates.HourLocator(interval=1))
+    ax.xaxis.set_major_formatter(
+        mdates.DateFormatter('%H:%M'))
 
-  # Rotate x-axis labels for readability
-  plt.setp(ax.xaxis.get_majorticklabels(), rotation=90)
+    # Rotate x-axis labels for readability
+    plt.setp(ax.xaxis.get_majorticklabels(), 
+                                    rotation=90)
 
-  # Labels and title
-  ax.set_xlabel('Time')
-  ax.set_ylabel('Price')
-  ax.set_title('Equinor Intraday Price')
+    # Labels and title
+    ax.set_xlabel('Time')
+    ax.set_ylabel('Price')
+    ax.set_title('Equinor Intraday Price')
 
-  return ax
+    return ax
 
 ax = create_canvas()
 
@@ -688,7 +693,7 @@ sigma = np.log(df['PRIS']).diff().std()
 
 #The Wiener process
 dlnS = (mu - 0.5 * sigma**2 
-            + sigma * np.random.randn(len(df)))
+                + sigma * np.random.randn(len(df)))
 
 #Ensuring the proces starts at the same point, 
 #and calulating the level
@@ -737,7 +742,7 @@ $${#eq-price_log_diff}
 The log change in stock price consists of three key components: *drift, volatility correction, and innovation*, which will now be explained in more detail:
 
 
-### Innovation
+## Innovation
 
 Since stock prices are not fully predictable, we need to introduce a random element. This randomness should be structured so that the variance increases proportionally with time. This assumption is reasonable because it implies that the stock price two months from now will have twice the variance — and thus twice the risk — of the stock price one month from now.
 
@@ -801,7 +806,7 @@ sigma * np.random.randn(len(df));
 Here, `np.random.randn(len(df))` generates random draws from a standard normal distribution, representing $\varepsilon_{t}$, while multiplying by `sigma` scales the randomness according to the estimated volatility of the stock price.
 
 
-### Drift
+## Drift
 
 The stock price is expected to change by a certain percentage each period. This expectation is captured by a drift term $\mu$, which represents the average rate of return per time unit. On average, the stock price is expected to increase by $\mu \Delta t$ in each period.
 
@@ -821,7 +826,7 @@ $${#eq-logdiff_drift_innov}
 In the calculation of @fig-intraday, $\Delta t = 1$
 
 
-### Volatility Correction
+## Volatility Correction
 
 If we were to define the change in log price using only the drift and innovation terms, as in (-@eq-logdiff_drift_innov) and (-@eq-sigma_delta_zt), the cumulative log price change from time 0 to $t$ would be:
 
@@ -853,7 +858,7 @@ $$
 \mathbb{E}[S_t] = S_0 \cdot e^{\mu \cdot t - \tfrac{1}{2} \sigma^2 t}
 $${#eq-correct_exp}
 
-### Putting It All Together
+## Putting It All Together
 
 By combining the innovation term (-@eq-sigma_delta_zt), the volatility correction term (-@eq-volatility_correction), and the drift component from (-@eq-logdiff_drift_innov), we arrive at a realistic model for the log change in stock price:
 
@@ -871,10 +876,10 @@ Using (-@eq-logdiff_model), the Python implementation therefore becomes
 
 ```{python}
 dlnS = (mu - 0.5 * sigma**2 
-            + sigma * np.random.randn(len(df)))
+                + sigma * np.random.randn(len(df)))
 
 df['PRIS_sim'] = (df['PRIS'].iloc[0] 
-                        * np.exp(np.cumsum(dlnS)))
+                        *np.exp(np.cumsum(dlnS)))
 ```
 
 Here, `np.cumsum(dlnS)` computes the cumulative sum of log changes across all observations in the dataset, giving the full simulated price path.
@@ -962,7 +967,8 @@ N = 30
 # Define the range for x
 dx = width*sigma/((N-1)*0.5)
 x = np.arange(mu - 4*sigma, mu + width*sigma, dx)
-x_fine = np.linspace(mu - width*sigma, mu + width*sigma, 1000)
+x_fine = np.linspace(mu - width*sigma, mu 
+                                + width*sigma, 1000)
 
 
 # PDF values
@@ -972,9 +978,12 @@ pdf_fine = norm.pdf(x_fine, mu, sigma)
 
 # Plot
 plt.figure(figsize=(10, 6))
-plt.plot(x_fine, pdf_fine, label='Normal PDF', color='blue')
-plt.bar(x, pdf, width=dx, alpha=0.5, align='center', label='PDF * dx (approximation)', edgecolor='black')
-plt.title('Numerical Approximation of Expectation using PDF * dx')
+plt.plot(x_fine, pdf_fine, label='Normal PDF', 
+                                        color='blue')
+plt.bar(x, pdf, width=dx, alpha=0.5, align='center', 
+    label='PDF * dx (approximation)', edgecolor='black')
+plt.title('Numerical Approximation of Expectationc '
+                                    'using PDF * dx')
 plt.xlabel('x')
 plt.ylabel('Density')
 plt.legend()
@@ -986,7 +995,7 @@ plt.show()
 
 
 
-### A Simple Function for Valuing a Derivative
+## A Simple Function for Valuing a Derivative
 
 To compute the expected value of a derivative, we need to evaluate the probability of each small interval on the $x$-axis and multiply it by the corresponding derivative payoff. For a simple normally distributed variable, the probability of each interval can be approximated as:
 
@@ -1017,7 +1026,8 @@ With these substitutions, the discrete risk-neutral probability distribution use
 
 ```{python}
 import scipy.stats as stats
-p = stats.norm.pdf(x, (r - 0.5 * sigma**2) * T, sigma * np.sqrt(T)) * dx
+p = stats.norm.pdf(x, (r - 0.5 * sigma**2) * T, 
+                        sigma * np.sqrt(T)) * dx
 ```
 
 Using this setup, we can now define a simple and general function for computing the risk-neutral expected value of a derivative with terminal payoff $f(S_T)$:
@@ -1026,31 +1036,18 @@ Using this setup, we can now define a simple and general function for computing 
 import numpy as np
 import scipy.stats as stats
 
-def derivative_value_risk_neutral(f, S0, sigma, r, T, N=1000, width=5):
-    """
-    Numerically computes the risk-neutral value of a derivative with payoff function f(S_T).
-    
-    Parameters:
-    - f: Payoff function f(S_T)
-    - S0: Initial stock price
-    - sigma: Volatility
-    - r: Risk-free interest rate
-    - T: Time to maturity
-    - N: Number of intervals for numerical integration
-    - width: Number of standard deviations to cover on each side
-    
-    Returns:
-    - Present value of the derivative
-    """
+def derivative_value_risk_neutral(f, S0, sigma, r, 
+                                    T,N=1000, width=5):
+    "f is a function of ST, the terminal stock price"
     vol_T = sigma * np.sqrt(T)
     mu_T = (r - 0.5 * sigma**2) * T
 
     x = np.linspace(-width * vol_T, width * vol_T, N)
     dx = x[1] - x[0]
-    
+
     ST = S0 * np.exp(x)
     p = stats.norm.pdf(x, mu_T, vol_T) * dx
-    
+
     pv = np.exp(-r * T) * np.sum(f(ST) * p)
     return pv
 ```
@@ -1060,18 +1057,21 @@ This function allows you to numerically evaluate the fair value of any derivativ
 
 ```{python}
 import scipy.stats as stats
-def derivative_value_risk_neutral(f, S0, sigma, r, T, N = 1000, width = 5):
+def derivative_value_risk_neutral(f, S0, sigma, r, T, 
+                                    N = 1000, width = 5):
     "Calculates the risk neutral value of f"
-    x = np.linspace(-width*sigma*(T**0.5), width*sigma*(T**0.5), N)
+    x = np.linspace(-width*sigma*(T**0.5), 
+                                width*sigma*(T**0.5), N)
     dx = width*sigma*(T**0.5)/((N-1)*0.5)
-    p = stats.norm.pdf(x, (r-0.5*sigma**2)*T, sigma*(T**0.5))*dx
-      
+    p = stats.norm.pdf(x, (r-0.5*sigma**2)*T, 
+                                        sigma*(T**0.5))*dx
+        
     pv = np.exp(-r*T)*np.sum(f(S0*np.exp(x))*p)
 
     return pv
 ```
 
-### Testing the derivative valuation function
+## Testing the derivative valuation function
 Now, let us test if this function works. We can do that by comparing it with the known Black&Scholes formula. The following defines the terminal value of the call option, and the Black&Scholes formula:
 
 ```{python}
@@ -1085,9 +1085,12 @@ def call_option(ST):
 
 
 def black_scholes(S0, X, r, sigma, T):
-    d1 = (np.log(S0/X) + (r + 0.5*sigma**2)*T)/(sigma*(T**0.5))
+    d1 = (np.log(S0/X) + 
+            (r + 0.5*sigma**2)*T)/(sigma*(T**0.5))
     d2 = d1 - sigma*(T**0.5)
-    return S0*stats.norm.cdf(d1) - X*np.exp(-r*T)*stats.norm.cdf(d2)	
+    bs = (S0*stats.norm.cdf(d1) 
+            - X*np.exp(-r*T)*stats.norm.cdf(d2))
+    return 	bs
 
 ```
 
@@ -1105,14 +1108,20 @@ sigma = 0.2  # Volatility
 T = 1  # Time to maturity (1 year)
 
 
-f0_num = derivative_value_risk_neutral(call_option, S0, sigma, r, T)
+f0_num = derivative_value_risk_neutral(call_option, 
+                                    S0, sigma, r, T)
 f0_bs = black_scholes(S0, X, r, sigma, T)
 
 print(f"Numerical integral result: {f0_num}")
 print(f"Black-Scholes result: {f0_bs}")
 # Check if the results are close	
-assert np.isclose(f0_num, f0_bs, atol=1e-4), "The results are not close!"
+
+test = np.isclose(f0_num, f0_bs, atol=1e-4)
+assert test, "The results are not close!"
 
 ```
 
 As we can see, our discrete valuation function works very well. With this simple approach, we can accurately value any contract written on the terminal asset price $S_T$.
+
+# Literature
+::: {#refs}
