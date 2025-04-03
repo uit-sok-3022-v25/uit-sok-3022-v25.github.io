@@ -38,7 +38,7 @@ Besvarelsen trenger ikke være spesielt lang, men den skal inneholde:
   * Presentasjon av resultatene.
   * Både grafisk og med tabeller
   * Oversiktlig og forståelig presentasjon av resultatene premieres
-  * 
+  
 ### Diskusjon
   * Forklar hovedfunnene
   * Hvilke konklusjoner kan trekkes?
