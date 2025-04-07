@@ -22,7 +22,7 @@ def main():
 	df['dp'] = np.log(df['Adjusted Price']).diff()
 	
 	#Check if the predictions are already in the output folder
-	if os.path.exists(f'{FLDR}/output/deriv_pred.dmp'):
+	if os.path.exists(f'{FLDR}/output/deriv_pred.dmp') and False:
 		with open(f'{FLDR}/output/deriv_pred.dmp', 'rb') as f:
 			res = pickle.load(f)
 	

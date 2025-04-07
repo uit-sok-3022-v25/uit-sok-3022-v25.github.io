@@ -48,14 +48,14 @@
 | 12        | 18.03.2025 | 10:15  | Dengjun Zhang | ARCH/GARCH                   |
 | 12        | 18.03.2025 | 13:15  | Dengjun Zhang | ARCH/GARCH                   |
 | 12        | 19.03.2025 | 10:15  | Dengjun Zhang | Presentation (mandatory)     |
-| 13        | 27.03.2025 | 12:15  | Espen Sirnes  | [Derivater](lectures_es/derivatives.html)  [QMD](lectures_es/derivatives.qmd)  [jupyter](lectures_es/derivatives.ipynb) [PDF](lectures_es/derivatives.pdf)               |
+| 13        | 27.03.2025 | 12:15  | Espen Sirnes  | [Derivater](lectures_es/derivatives.html)  [QMD](lectures_es/derivatives.qmd)  [jupyter](lectures_es/derivatives.ipynb) [PDF](lectures_es/derivatives.pdf)      |
 | 14        | 01.04.2025 | 12:15  | Espen Sirnes  | Derivater                    |
-| 14        | 03.04.2025 | 12:15  | Espen Sirnes  | Derivater/ARCH/GARCH                    |
+| 14        | 03.04.2025 | 12:15  | Espen Sirnes  | Derivater/ARCH/GARCH         |
 | 15        | 10.04.2025 | 12:15  | Espen Sirnes  | Makroøkonomi                 |
 | 17        | 23.04.2025 |        |               | Innlevering Case Derivater (Canvas)|
 | 17        | 24.04.2025 | 12:15  | Espen Sirnes  | Makroøkonomi                 |
+| 19        | 06.05.2025 | 08:15  | Espen Sirnes  | Presentasjoner     	  		 | 
 | 20        | 12.05.2025 |        |               | Innlevering Case Makroøkonomi  (Canvas)      |
-| 19        | 06.05.2025 | 08:15  | Espen Sirnes  | Presentasjoner                |
 | 21        | 20.05.2025 | 13:00  |               | Endelig innlevering Case I og Case II (Wiseflow)|
 
 
