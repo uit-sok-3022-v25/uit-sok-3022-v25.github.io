@@ -15,6 +15,14 @@
 [Tao et al.  (2023). How does financial development influence carbon emission intensity in the OECD countries.pdf](reading/Tao%20et%20al.%20%20(2023).%20How%20does%20financial%20development%20influence%20carbon%20emission%20intensity%20in%20the%20OECD%20countries.pdf)
 
 
+### VCEM: 
+[Li, F., Wu, Y. C., Wang, M. C., Wong, W. K., & Xing, Z. (2021). Empirical study on CO2 emissions, financial development and economic growth of the BRICS countries. Energies, 14(21), 7341.](reading/Li%20et%20al.%20%20(2021)%20DCC-GARCH.pdf)
+
+
+### DCC-GARCH:
+
+[Antonakakis, N., Cunado, J., Filis, G., Gabauer, D., & De Gracia, F. P. (2018). Oil volatility, oil and gas firms and portfolio diversification. Energy Economics, 70, 499-515.](reading/Antonakakis%20et.al%20(2018).pdf)
+
 ## Finans/Makro:
 ### ARIMA: 
 [Box, George EP, and David A. Pierce. "Distribution of residual autocorrelations in autoregressive-integrated moving average time series models." Journal of the American statistical Association 65.332 (1970): 1509-1526.](reading/Box%20Jenkins%20(1970).pdf)
@@ -23,18 +31,11 @@
 [Bollerslev, Tim. "Generalized autoregressive conditional heteroskedasticity." Journal of econometrics 31.3 (1986): 307-327.](reading/Bollerslev%20(1986).pdf)
 
 
-### DCC-GARCH:
-
-[Antonakakis, N., Cunado, J., Filis, G., Gabauer, D., & De Gracia, F. P. (2018). Oil volatility, oil and gas firms and portfolio diversification. Energy Economics, 70, 499-515.]
-
 ### Inflasjonsprediksjon:
 [Stock, James H., and Mark W. Watson. "Why has US inflation become harder to forecast?." Journal of Money, Credit and banking 39 (2007): 3-33.](reading/Stock%20and%20Watson%20(2007).pdf) (SW)
 
 
-### VCEM: 
-[Li, F., Wu, Y. C., Wang, M. C., Wong, W. K., & Xing, Z. (2021). Empirical study on CO2 emissions, financial development and economic growth of the BRICS countries. Energies, 14(21), 7341.]
-### Permanentinntektshypotesen:
-[Campbell, John Y., and N. Gregory Mankiw. "International evidence on the persistence of economic fluctuations." Journal of Monetary Economics 23.2 (1989): 319-333.](reading/Campbell%20and%20Mankiw%20(1989).pdf) (CM)
+
 
 # Kursplan
 

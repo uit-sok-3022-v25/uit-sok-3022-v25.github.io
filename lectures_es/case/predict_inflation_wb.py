@@ -7,7 +7,8 @@ import paneltime as pt
 import os
 
 FLDR = os.path.dirname(__file__)
-
+FIGPATH = f'{FLDR}/figures/scatter_wb.png'
+PRED_DATAFILE = f'{FLDR}/output/pred_wb.dmp'
 
 def main():
 	data = get_data()
@@ -17,19 +18,19 @@ def main():
 	rng = rng[rng>rng[30]] # Skip first 20 years	
 
 	# Predict and compare if not already done
-	if os.path.exists(f'{FLDR}/output/df_obs_vs_pred.dmp'):
-		df_obs_vs_pred = pd.read_pickle(f'{FLDR}/output/df_obs_vs_pred.dmp')
+	if os.path.exists(PRED_DATAFILE):
+		df_obs_vs_pred = pd.read_pickle(PRED_DATAFILE)
 	else:
 		df_obs_vs_pred = pd.DataFrame()
 		for year in rng:
 			df = predict_and_compare(data, year)
 			df_obs_vs_pred = pd.concat((df_obs_vs_pred, df), axis=0)
 			print(f"Predicted and compared for year {year}")
-		df_obs_vs_pred.to_pickle(f'{FLDR}/output/df_obs_vs_pred.dmp')
+		df_obs_vs_pred.to_pickle(PRED_DATAFILE)
 	model, X = ols(df_obs_vs_pred)
 	fig = plot(df_obs_vs_pred, model, X)
 	fig.show()
-	fig.savefig(f'{FLDR}/figures/scatter.png')
+	fig.savefig(FIGPATH)
 
 
 def get_data():

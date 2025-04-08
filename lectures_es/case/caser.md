@@ -5,8 +5,9 @@ VIKTIG: All kode må legges ved, og du må forsikre deg om at den kjører utenfo
 
 ## Oppgave 1: prediker opsjonskurs
 
-Data: [AEGON NV data](derivative.csv)
+Data: [AEGON NV data](data/derivative.csv)
 Informasjon om opsjonen: [AEGON NV info](info_option.html)
+Eksempel:  [derivative_prediction.py](derivative_prediction.py)
 
 
 ### Problemstilling:
@@ -47,6 +48,7 @@ Besvarelsen trenger ikke være spesielt lang, men den skal inneholde:
 ## Oppgave 2: Pris et derivat
 
 Data: valgfritt
+Eksempel:  Se opsjonsprisingsfunksjon i [notatet](/lectures_es/derivatives.html) ([jupyter](lectures_es/derivatives.ipynb))
 
 ### Problemstilling:
 
@@ -79,8 +81,32 @@ Denne besvarelsen trenger heller ikke være spesielt lang, men den skal innehold
   
 
 # Del II: Makro
-  * Prediker inflasjon
-  * Mer info kommer
+  Data: SSB, Verdensbanken (`wbdata`), Euronext/Titlon
+  Eksempel: [predict_inflation_ssb.py](predict_inflation_ssb.py) og [predict_inflation_wb.py](predict_inflation_wb.py)
+
+### Problemstilling:
+  * Lag en prediksjonsmodell for inflasjon. Vurder hvor godt modellen predikerer inflasjon og identifiser hva som er mest avgjørende for prediksjonen. Vurder om ARIMA/GARCH er nødvendig elle rnyttig. 
+
+### Innledning
+  * Finn literatur om hvordan inflasjon kan predikeres ([Denne kan kanskje hjelpe dere i gang](../../reading/Stock%20and%20Watson%20(2007).pdf)).
+  * Beskriv problemstillingen og hvilke mekasnismer som bestemmer inflasjonen i et land.
+  * Beskriv hva du forventer å finne
+
+### Metode og data
+  * Beskriv fremgangsmåten og dataene som er brukt.
+
+### Resultat og analyse
+  * Vis analytisk og grafisk hvordan modellen fungerer
+  * Vurder hvor godt modellen predikerer inflasjonen i fremtiden.
+  * Identifiser hva som er mest avgjørende for prediksjonen.
+  * Vurder om ARIMA/GARCH er nødvendig eller nyttig.
+  
+### Diskusjon og oppsummering
+  * Oppsummer hva som er gjort. 
+  * Hva har du lært? 
+  * Dersom du hadde mer tid, eller bedre data, hvordan ville du gjort det annerledes?
+
+
 
 # Vurderingskriterier
 

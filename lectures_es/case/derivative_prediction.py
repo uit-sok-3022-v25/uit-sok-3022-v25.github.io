@@ -17,12 +17,12 @@ pt.options.supress_output = True
 def main():
 
 	# Get data from csv file
-	df = pd.read_csv(f'{FLDR}/derivative.csv', sep=';')
+	df = pd.read_csv(f'{FLDR}/data/derivative.csv', sep=';')
 	df = df.sort_values('date')
 	df['dp'] = np.log(df['Adjusted Price']).diff()
 	
 	#Check if the predictions are already in the output folder
-	if os.path.exists(f'{FLDR}/output/deriv_pred.dmp') and False:
+	if os.path.exists(f'{FLDR}/output/deriv_pred.dmp'):
 		with open(f'{FLDR}/output/deriv_pred.dmp', 'rb') as f:
 			res = pickle.load(f)
 	

@@ -3,3 +3,5 @@ Thumbs.db
 unused/
 .ipynb_checkpoints/
 __pycache__/
+.dmp
+credentials.py
