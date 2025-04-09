@@ -25,7 +25,282 @@ format:
     ipynb: default
 ---
 
-In this note, we shall take a closer look at what determines inflation of a country. 
+
+
+# Basic Macroeconomics
+
+To lay a strong foundation for inflation forecasting, we begin by revisiting the essential frameworks from a typical introductory macroeconomics course. Models such as the Aggregate Demand–Aggregate Supply (AD–AS) framework, the Phillips Curve, and the IS–LM model illustrate how key variables—output, employment, interest rates, and monetary policy—interact to influence the overall price level. These fundamental relationships form the basis for more sophisticated approaches to predicting inflation. By understanding how economic activity (demand) and production capacity (supply) jointly determine prices, we can better identify and anticipate the pressures that drive inflation within an economy.
+
+
+## Investment, Central Bank Interest Rates, and Inflation
+
+In any economy, firms typically finance new projects and investments through borrowing. The cost of borrowing depends on the prevailing interest rate. When interest rates are low, the cost of capital is cheaper, and firms become more inclined to invest in equipment, infrastructure, and research. As a result, aggregate demand may increase because investment is a key component of total spending. Conversely, when interest rates rise, borrowing becomes more expensive, firms reduce their investments, and the pace of economic activity can slow.
+
+Central banks, such as the Federal Reserve, the European Central Bank and Norges Bank, play a central role in determining these interest rates through their policy decisions. By setting a target policy rate, they influence the broader range of interest rates in the economy, including commercial and mortgage rates. Typically, a central bank will raise the policy rate in response to higher inflation or inflationary pressures with the goal of tempering aggregate demand and moderating price increases. On the other hand, lowering the policy rate is often intended to stimulate borrowing and spending, which can boost aggregate demand and potentially push inflation higher if economic activity exceeds the productive capacity of the economy.
+
+One way to visualize these relationships is via a simplified “IS curve” (Investment–Savings) and a horizontal policy rate line in interest rate–output space, see @fig-is-rr. The IS curve slopes downward because @hicks1937mr, at lower interest rates, aggregate demand (particularly investment spending) tends to be higher, thus increasing output. However, if the central bank sets a particular policy rate and commits to maintaining it, that rate appears as a horizontal line on the same diagram.
+
+```{python}
+#| label: fig-is-rr
+#| fig-cap: "Investment Supply and the interest rate"
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# A range of possible output (Y) values
+Y = np.linspace(0, 20, 200)
+
+# Define parameters for a simple linear IS curve: i = a - b * Y
+a = 5.0   # Intercept (interest rate when Y=0)
+b = 0.2   # Slope
+
+# Calculate the interest rate along the IS curve
+i_IS = a - b * Y
+
+# Central bank's policy rate (horizontal line)
+i_policy = 3.0
+
+# Create figure and axis
+fig, ax = plt.subplots(figsize=(6, 4))
+
+# Plot IS curve
+ax.plot(Y, i_IS, label='IS Curve')
+
+# Plot horizontal policy rate line
+ax.axhline(y=i_policy, color='black', linestyle='--', label='Policy Rate')
+
+# Mark equilibrium point
+Y_star = (a - i_policy) / b
+ax.plot(Y_star, i_policy, 'ro')  # red dot
+ax.annotate(r'$Y^*$', xy=(Y_star, i_policy), xytext=(Y_star + 0.3, i_policy + 0.2),
+            arrowprops=dict(arrowstyle='->'))
+ax.axvline(x=Y_star, linestyle=':', color='gray')
+
+# Set labels and title
+ax.set_xlabel('Output (Y)')
+ax.set_ylabel('Interest Rate (i)')
+ax.set_title('Downward Sloping IS Curve and Horizontal Policy Rate')
+
+# Add legend and grid
+ax.legend()
+ax.set_ylim([0,5.5])
+
+# Show plot
+plt.show()
+
+```
+
+In this graph, the downward-sloping line labeled “IS Curve” shows how lower interest rates tend to be associated with higher levels of output, reflecting stronger investment spending. The dashed horizontal line labeled “Policy Rate” represents the central bank’s chosen interest rate. If the central bank firmly anchors the interest rate at this level, the actual market interest rate will not necessarily follow the IS line at every point, depending on how credit markets and monetary policy transmission mechanisms operate. Nonetheless, this stylized depiction helps illustrate how the central bank’s actions influence the cost of borrowing and, consequently, investment decisions and overall economic activity.
+
+
+## Real and Nominal Interest Rates
+
+The distinction between nominal and real interest rates is central to understanding economic behavior, particularly when forecasting inflation. The **nominal interest rate** is the stated rate on a loan or financial asset, unadjusted for inflation. For example, if a savings account offers a return of 5% per year, this figure represents the nominal interest rate.
+
+However, what truly matters for economic decisions—especially for borrowers and investors—is the **real interest rate**, which accounts for changes in the price level. The real interest rate reflects the true cost of borrowing and the true return on savings, once inflation is taken into consideration. A commonly used approximation for the real interest rate is:
+
+$$
+r \approx i - \pi
+$${#eq-fisher_equation}
+
+where $r$ is the real interest rate, $i$ is the nominal interest rate, and $\pi$ is the inflation rate.
+
+This relationship implies that if inflation rises while the nominal interest rate remains unchanged, the real interest rate falls. In such a case, the burden of debt repayment becomes lighter in real terms, potentially encouraging more borrowing and spending. For instance, if the nominal interest rate is 5\% but inflation is 4\%, the real interest rate is only about 1\%. Thus, even a seemingly high nominal rate may correspond to a very low—or even negative—real rate when inflation is taken into account. This dynamic plays a crucial role in the transmission of monetary policy and is a key consideration when forecasting inflation and its broader economic effects.
+
+
+## Aggregate Supply (AS) and Aggregate Demand (AD)
+
+Aggregate demand (AD) represents the total demand for goods and services in the economy at various price levels. It reflects the combined spending of households (consumption), firms (investment), the government, and the foreign sector (net exports). The AD curve is typically downward-sloping: as the price level falls, the quantity of goods and services demanded increases. This is due to several mechanisms, including wealth effects, interest rate effects, and exchange rate effects that influence behavior as prices change.
+
+When aggregate demand increases rapidly—due to expansionary fiscal policy, accommodative monetary policy, or a surge in private sector confidence—it can outpace the economy’s productive capacity. In such cases, inflationary pressures may build as too much money chases too few goods. This situation is commonly referred to as demand-pull inflation.
+
+Aggregate supply (AS), by contrast, captures the total output that firms are willing and able to produce at different price levels. In the short run, the AS curve typically slopes upward due to price rigidities such as sticky wages, contracts, and adjustment costs. However, in the long run, the AS curve becomes vertical at the level of potential output, representing the economy’s full capacity based on available resources and technology.
+
+The interaction between aggregate demand and supply determines the equilibrium price level and real output in the economy. When aggregate demand increases in an economy already operating near full capacity, the price level tends to rise more than output, generating inflation. Alternatively, shifts in aggregate supply—such as a surge in commodity prices or disruptions to global supply chains—can lead to cost-push inflation. Positive supply-side developments, such as improved productivity or input cost reductions, can ease inflationary pressures.
+
+These dynamics are illustrated in @fig-as_ad below, where the **blue line** represents the downward-sloping AD curve and the **orange line** shows the upward-sloping AS curve. The intersection of these curves marks the equilibrium output and price level.
+
+
+```{python}
+#| label: fig-as_ad
+#| fig-cap: "Aggregate Supply (AS) and Aggregate Demand (AD)"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Stylized ranges for Real Output (Y)
+Y = np.linspace(0, 20, 200)
+
+# Define the AD and AS curves
+a_AD = 12
+b_AD = 0.8
+P_AD = a_AD - b_AD * Y
+
+c_AS = 2
+d_AS = 0.4
+P_AS = c_AS + d_AS * Y
+
+# Calculate equilibrium
+Y_eq = (a_AD - c_AS) / (b_AD + d_AS)
+P_eq = a_AD - b_AD * Y_eq  # Same as c_AS + d_AS * Y_eq
+
+# Create figure and axis
+fig, ax = plt.subplots(figsize=(6, 4))
+
+# Plot the AD and AS curves
+ax.plot(Y, P_AD, label="AD (Aggregate Demand)", color='blue')
+ax.plot(Y, P_AS, label="AS (Aggregate Supply)", color='orange')
+
+# Mark the equilibrium point
+ax.plot(Y_eq, P_eq, 'ro', label=f"Equilibrium (Y={Y_eq:.2f}, P={P_eq:.2f})")
+ax.axvline(x=Y_eq, linestyle=':', color='gray')
+ax.axhline(y=P_eq, linestyle=':', color='gray')
+
+# Labels, title, and legend
+ax.set_xlabel("Real Output (Y)")
+ax.set_ylabel("Price Level (P)")
+ax.set_title("Stylized AS-AD Model")
+ax.legend()
+# Show the plot
+plt.show()
+
+```
+
+
+## Currency and Inflation
+
+
+Exchange rates play an important role in shaping inflation dynamics, particularly in open economies that trade heavily with the rest of the world. When a country’s currency appreciates—meaning it strengthens relative to other currencies—imports become cheaper. This is because fewer units of the domestic currency are needed to purchase foreign goods and raw materials. As a result, an appreciation tends to ease inflationary pressures by reducing the cost of imported goods, which can translate into lower overall price levels for consumers and producers.
+
+On the other hand, when a currency depreciates, imports become more expensive. The higher local-currency price of foreign goods and inputs can feed directly into consumer prices or raise production costs for firms, contributing to inflation. This is particularly significant in countries that rely heavily on imported energy, food, or intermediate goods.
+
+Given this connection, central banks often take exchange rate movements into account when setting interest rates. A sudden depreciation of the currency, especially if driven by capital outflows or a loss of investor confidence, may prompt the central bank to raise interest rates to contain inflationary pressures. Conversely, if a strong currency is contributing to disinflation or even deflation, policymakers might consider lowering interest rates to support domestic demand and stabilize prices. Thus, the exchange rate serves as both a direct and indirect channel through which inflation is influenced and monetary policy decisions are shaped.
+
+
+
+
+
+# Estimating Future Inflation
+
+Having explored the macroeconomic foundations of inflation, we now turn to the question of how inflation can be forecasted using empirical models. The central challenge is to identify economic variables that reliably predict future price movements. This section traces a key strand of the academic literature, beginning with early work on interest rates as predictors of inflation and moving toward more modern perspectives that confront the evolving complexity of the inflation process.
+
+
+## Conventional Macroeconomic Models and the Phillips Curve Tradition
+
+A natural starting point in the empirical modeling of inflation is to turn to conventional macroeconomic variables grounded in the IS–AD–AS framework. These models emphasize the relationship between inflation and the overall state of the economy, particularly measures of real activity such as output, unemployment, and capacity utilization. The central idea is intuitive: when the economy is operating above its potential—due to strong demand—prices tend to rise more rapidly, while economic slack is typically associated with lower inflation or even deflation.
+
+The most well-known operationalization of this framework is the Phillips curve, which relates inflation to the unemployment rate or, more precisely, to the deviation of unemployment from its natural rate. This relationship has a long empirical history and remains a core component in many policy models used by central banks and forecasting institutions. A prominent example is @gordon1997time “triangle model” of inflation, which decomposes inflation dynamics into three components: inertia (past inflation), demand pressure (as proxied by the unemployment gap), and supply shocks (such as changes in commodity prices or exchange rates). This approach aligns with the idea that inflation is influenced by both real activity and cost-push factors, and it reflects the theoretical logic of the AD–AS framework in a reduced-form regression.
+
+Several influential studies have shaped the use of traditional macroeconomic indicators in the empirical forecasting of inflation. @gordon1982price early work laid the foundation for the so-called triangle model, which decomposes inflation into three components: inertia (past inflation), demand pressures (proxied by the unemployment gap), and supply shocks (such as oil prices). This framework became a mainstay in forecasting exercises that aim to account for both nominal rigidities and structural sources of inflation variation. @fuhrer1995phillips further contributed to the validation of this approach, showing that Phillips curve models incorporating both lagged inflation and real activity measures remain empirically robust and useful for short- to medium-term forecasts. Building on these ideas within a New Keynesian framework, @roberts1995new and @roberts1997inflation estimated hybrid Phillips curves that allow for both backward-looking and forward-looking behavior. His findings demonstrate that output gaps and inflation expectations together provide meaningful predictive content, especially in models that account for sticky prices and staggered wage setting. Together, these studies form the empirical backbone of a broad class of inflation forecasting models that link real economic conditions to future inflation in a structured and interpretable way. Although their performance can vary depending on the macroeconomic environment, these models continue to serve as benchmarks in academic and policy settings.
+
+
+## Has inflation become harder to forcast?
+
+As empirical methods improved and longer datasets became available, the question arose as to whether inflation itself had become more difficult to forecast over time. This is the question taken up by @stock2007has In a careful empirical analysis, Stock and Watson show that the performance of standard forecasting models—such as autoregressive models or those based on Phillips curve relationships—deteriorated substantially starting in the mid-1980s. Their results suggest that inflation had become less persistent, and that traditional indicators, such as the unemployment rate or the output gap, had lost much of their explanatory power.
+
+Stock and Watson identify three key developments behind this decline in forecast accuracy. 
+
+* First, inflation persistence has decreased, meaning that past inflation rates no longer provide as much information about future values. 
+
+* Second, structural relationships, such as the link between inflation and economic slack, appear to have weakened or changed, reducing the predictive power of models grounded in earlier macroeconomic theory. 
+
+* Third, the influence of stochastic volatility—random, unpredictable shocks—has increased, making inflation more sensitive to factors that models cannot easily capture.
+
+
+
+
+## Famas test of market efficiency
+A foundational contribution came from @fama1975short, who proposed that nominal interest rates, particularly short-term rates, might serve as unbiased forecasts of future inflation. The theoretical foundation of this claim lies in the Fisher equation @eq-fisher_equation, which decomposes nominal interest rates into a real interest rate component and expected inflation. If real interest rates are constant or at least predictable, then variations in nominal rates should largely reflect movements in expected inflation. That is, he effectively tests a version of the Fisher equaiton @eq-fisher_equation:
+
+$$
+(-\pi_t)=a_0 + a_1 \cdot i_t + a_2 \cdot (-\pi_{t-1}) + \epsilon_t
+$$
+
+If you wonder why the uses the negative of the inflation $(-\pi_t)$, don't ask. $i_t$ is the t-bill nominal interest rate. 
+
+Using U.S. data from periods of high and volatile inflation, Fama empirically tested the hypothesis and found that short-term nominal interest rates did, in fact, contain information about contemporaneous inflation. Moreover, lagged inflation appeared to add little explanatory power: the coefficient on past inflation, $a_2$, was not significantly different from zero. This result supports the view that the interest rate market incorporates available information efficiently, making nominal rates a relatively unbiased measure of expected inflation during this period.
+
+
+In some specifications, the nominal interest rate even behaved like unbiased predictors. This suggested that financial markets, by pricing interest-bearing instruments, could anticipate future inflation. His findings stimulated a large literature that sought to explore and refine the idea that market-based interest rates might encode forward-looking information about the macroeconomy.
+
+## Are real interest rates really constant?
+However, a crucial assumption in Fama’s framework — that real interest rates are constant over time — soon became the subject of critique. @nelson1977short responded directly to this issue. They tested the constancy of real interest rates by subtracting actual inflation from observed nominal rates and examining the resulting series, i.e. simply calcuating the ralized real return using @eq-fisher_equation. 
+
+They then tested if the real return was in fact contstant, by checking its autocorrelation. They found theere was in deed time dependnce, and hence, real returns are not constants, undermining the assumption that nominal rates could be interpreted as clean signals of inflation expectations.
+
+The implications of Nelson and Schwert’s findings were far-reaching. If real interest rates fluctuate, then movements in nominal interest rates could reflect changes in both the real and expected inflation components, making it harder to isolate expectations. Their work shifted the focus in the literature toward more sophisticated empirical strategies, including models that treated both expected inflation and real rates as jointly stochastic processes. This shift called for multivariate models or state-space methods that could capture the latent dynamics underlying interest rates and inflation simultaneously.
+
+## Time Series Forecasting: ARIMA and GARCH Models
+
+A substantial body of empirical work has examined the performance of time series models such as ARIMA and GARCH in forecasting inflation. These models are particularly useful in capturing the persistence and volatility clustering often observed in inflation data, and have long served as benchmarks in the inflation forecasting literature.
+
+@stock2007has in their broader comparison of inflation models, include univariate ARIMA-type forecasts and find that although these models perform reasonably well, their accuracy deteriorated significantly after the mid-1980s. They argue that the decline in inflation persistence — a stylized fact of the post-Volcker disinflation era — reduces the predictive power of such backward-looking models. This finding highlights a broader pattern: ARIMA models can be effective when inflation follows stable statistical properties but perform poorly in the presence of structural breaks or shifts in the inflation process.
+
+Other studies have incorporated GARCH-type volatility modeling to account for time-varying uncertainty in inflation. The ARCH and GARCH models introduced by @engle1986modelling were originally developed for modeling financial volatility, but subsequent research extended their application to macroeconomic time series, including inflation. In empirical work, GARCH specifications are often used to model inflation uncertainty and to generate density forecasts, capturing not only the expected path of inflation but also the confidence bands around it.
+
+For example, @brunner1993higher apply GARCH models to U.S. CPI inflation and find strong evidence of volatility clustering, particularly during periods of monetary regime change. Their results suggest that modeling conditional heteroskedasticity can improve the accuracy of forecast intervals, even though it has limited effect on point forecasts. These findings underscore the importance of capturing time-varying uncertainty in inflation models, especially for risk-sensitive applications such as monetary policy and bond pricing.
+
+Although GARCH models have proven valuable in capturing inflation uncertainty, the field has matured over the past two decades. Most of the foundational insights about volatility clustering and conditional variance were established in the 1990s, and more recent published work has largely applied established models rather than developing fundamentally new frameworks. As a result, the use of ARCH/GARCH in inflation forecasting is now considered a standard tool — one that still holds value but no longer sits at the frontier of research, so studies on this are rarely published. 
+
+In sum, ARIMA and GARCH models provide a flexible, data-driven way to forecast inflation and its associated volatility. While their strength lies in capturing autoregressive patterns and conditional heteroskedasticity, their performance is sensitive to changes in the underlying inflation process. As such, their role is often complementary to structural and expectation-based models, particularly in environments with relatively stable inflation dynamics.
+
+## Using Dynamic Stochastic General Equilibrium (DSGE) models for predicting inflation
+
+No survey of modern inflation modeling would be complete without acknowledging the role of Dynamic Stochastic General Equilibrium (DSGE) models. These models represent the most theoretically rigorous class of macroeconomic models, grounded in microeconomic foundations and rational expectations. In a DSGE model, inflation arises as a result of optimizing decisions by forward-looking agents — households, firms, and policymakers — interacting in an economy subject to stochastic shocks and frictions such as sticky prices, wage rigidity, or adjustment costs.
+
+DSGE models have been developed and extended over several decades, and many central banks use them to analyze monetary policy, evaluate counterfactual scenarios, and assess the propagation of economic shocks. A leading example is the model of @smets2007shocks, which became a benchmark for medium-scale DSGE modeling and was shown to fit post-war U.S. data reasonably well. In their analysis, Smets and Wouters demonstrate that their DSGE model can compete with — but not clearly outperform — Bayesian VARs when it comes to forecasting inflation, particularly at short to medium horizons.
+
+Other studies echo this finding. For example, @edge2010comparison compare the forecasting performance of the Federal Reserve's estimated DSGE model (EDO) with various statistical and judgment-based models. While the DSGE model performs adequately over longer horizons and in capturing policy-consistent dynamics, it does not systematically outperform simpler alternatives for short-term inflation forecasts. Similar conclusions are drawn by @del2015inflation, who emphasize the value of combining DSGE insights with more flexible data-driven approaches, such as Bayesian forecasting techniques that blend theory and empirical regularity.
+
+For students working on practical inflation forecasting — particularly for term papers focused on empirical accuracy and predictive performance — DSGE models are unlikely to be the most fruitful direction. These models are complex to estimate, require strong structural assumptions, and tend to deliver relatively weak out-of-sample performance unless heavily tailored and combined with other information. Moreover, the technical barriers to implementing DSGE models (such as solving nonlinear systems and estimating via Kalman filtering or Bayesian techniques) can be substantial, particularly in the context of a semester project.
+
+That said, DSGE models remain valuable as a **conceptual benchmark**. They help clarify the structural origins of inflation and the role of expectations, which can inform variable selection and interpretation in simpler models. But for the purpose of producing **accurate, timely, and flexible forecasts**, students are generally advised to focus on approaches that are empirically driven — such as time series models, reduced-form Phillips curves, or hybrid frameworks combining survey data and market signals.
+
+In short, DSGE models offer deep theoretical insight but limited practical advantage for the type of empirical forecasting exercises required in this course.
+
+
+
+
+# Appendix
+
+## Structure and Estimation of DSGE Models
+
+DSGE models are built on the idea that macroeconomic aggregates — including inflation — emerge from the optimizing behavior of individual agents under uncertainty. These models typically consist of three key building blocks:
+
+1. **Households** optimize intertemporal utility subject to a budget constraint, choosing consumption, labor supply, and saving.
+2. **Firms** maximize profits under production technology constraints and often face frictions such as price or wage stickiness (e.g., Calvo pricing).
+3. **Policy authorities** (typically a central bank) set interest rates according to a monetary policy rule, often of the Taylor-type:
+   $$
+   i_t = \bar{i} + \phi_\pi (\pi_t - \pi^*) + \phi_y (y_t - y^*)
+   $$
+
+where $\pi_t$ is inflation, $y_t$ is output, and $\pi^*$, $y^*$ are targets or steady states.
+
+These decisions are modeled in a general equilibrium setting, incorporating stochastic shocks — such as technology, preference, monetary, and cost-push shocks — that affect the dynamic behavior of the system.
+
+## Solving and Estimating DSGE Models
+
+DSGE models are usually solved by log-linearizing the equilibrium conditions around a steady state, which yields a system of expectational difference equations. These can be written in the general form:
+
+$$
+E_t[f(x_{t+1}, x_t, x_{t-1}, \varepsilon_t)] = 0
+$$
+
+Solving these systems typically involves **perturbation methods** (for linear models) or **projection methods** (for nonlinearities). Estimation is usually carried out via:
+
+- **Maximum likelihood** using the **Kalman filter**, if the model is cast in state-space form.
+- **Bayesian methods**, which are especially popular in DSGE estimation. Priors are placed on structural parameters, and the likelihood is evaluated using filtering techniques. Posterior inference is conducted via MCMC (e.g., Metropolis-Hastings).
+
+## Software used in DSGE models
+
+Standard tools for solving and estimating DSGE models include:
+
+- **Dynare** (MATLAB or Octave) — widely used in academia and central banks.
+- **IRIS Toolbox** (MATLAB) — more flexible, model-based macroeconometric platform.
+- **DSGE.jl** (Julia) — a newer open-source platform under active development.
+
+
 
 
 

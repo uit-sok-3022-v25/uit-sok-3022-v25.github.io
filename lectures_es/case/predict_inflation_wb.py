@@ -37,11 +37,13 @@ def get_data():
 	# Fetch data from WB
 	# Defining indicators to fetch from World Bank API
 	indicators = {
-		'NY.GDP.MKTP.KD.ZG': 'GDP_growth',    # BNP-vekst
-		'FP.CPI.TOTL.ZG': 'Inflation',        # Inflasjon (konsumprisindeks)
-		'FR.INR.LEND': 'Interest_rate',        # Rentenivå (lånerente)
-		'NY.GNS.ICTR.ZS': 'Gross_Savings',  # Gross savings (% of GDP)
-		'NE.CON.GOVT.ZS': 'Gov_Consumption',  # Government consumption (% of GDP)
+		'NY.GDP.MKTP.KD.ZG': 'GDP_growth',        # GDP growth (% annual)
+		'FP.CPI.TOTL.ZG': 'Inflation',            # Inflation (consumer price index, % annual)
+		'FR.INR.LEND': 'Interest_rate',           # Lending interest rate (%)
+		'NY.GNS.ICTR.ZS': 'Gross_Savings',        # Gross savings (% of GDP)
+		'NE.CON.GOVT.ZS': 'Gov_Consumption',      # Government consumption (% of GDP)
+		'SL.UEM.TOTL.ZS': 'Unemployment_rate',    # Unemployment rate (% of total labor force)
+		'SL.EMP.TOTL.SP.ZS': 'Employment_rate',   # Employment to population ratio (% age 15+)
 	}
 
 	#Download if not already downloaded
