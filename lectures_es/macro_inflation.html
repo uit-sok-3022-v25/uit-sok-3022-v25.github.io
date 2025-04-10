@@ -374,37 +374,6 @@ r \approx i - \pi
 <p>For students working on practical inflation forecasting — particularly for term papers focused on empirical accuracy and predictive performance — DSGE models are unlikely to be the most fruitful direction. These models are complex to estimate, require strong structural assumptions, and tend to deliver relatively weak out-of-sample performance unless heavily tailored and combined with other information. Moreover, the technical barriers to implementing DSGE models (such as solving nonlinear systems and estimating via Kalman filtering or Bayesian techniques) can be substantial, particularly in the context of a semester project.</p>
 <p>That said, DSGE models remain valuable as a <strong>conceptual benchmark</strong>. They help clarify the structural origins of inflation and the role of expectations, which can inform variable selection and interpretation in simpler models. But for the purpose of producing <strong>accurate, timely, and flexible forecasts</strong>, students are generally advised to focus on approaches that are empirically driven — such as time series models, reduced-form Phillips curves, or hybrid frameworks combining survey data and market signals.</p>
 <p>In short, DSGE models offer deep theoretical insight but limited practical advantage for the type of empirical forecasting exercises required in this course.</p>
-</section>
-</section>
-<section id="appendix" class="level1">
-<h1>Appendix</h1>
-<section id="structure-and-estimation-of-dsge-models" class="level2">
-<h2 class="anchored" data-anchor-id="structure-and-estimation-of-dsge-models">Structure and Estimation of DSGE Models</h2>
-<p>DSGE models are built on the idea that macroeconomic aggregates — including inflation — emerge from the optimizing behavior of individual agents under uncertainty. These models typically consist of three key building blocks:</p>
-<ol type="1">
-<li><strong>Households</strong> optimize intertemporal utility subject to a budget constraint, choosing consumption, labor supply, and saving.</li>
-<li><strong>Firms</strong> maximize profits under production technology constraints and often face frictions such as price or wage stickiness (e.g., Calvo pricing).</li>
-<li><strong>Policy authorities</strong> (typically a central bank) set interest rates according to a monetary policy rule, often of the Taylor-type: <span class="math display">\[
-i_t = \bar{i} + \phi_\pi (\pi_t - \pi^*) + \phi_y (y_t - y^*)
-\]</span></li>
-</ol>
-<p>where <span class="math inline">\(\pi_t\)</span> is inflation, <span class="math inline">\(y_t\)</span> is output, and <span class="math inline">\(\pi^*\)</span>, <span class="math inline">\(y^*\)</span> are targets or steady states.</p>
-<p>These decisions are modeled in a general equilibrium setting, incorporating stochastic shocks — such as technology, preference, monetary, and cost-push shocks — that affect the dynamic behavior of the system.</p>
-</section>
-<section id="solving-and-estimating-dsge-models" class="level2">
-<h2 class="anchored" data-anchor-id="solving-and-estimating-dsge-models">Solving and Estimating DSGE Models</h2>
-<p>DSGE models are usually solved by log-linearizing the equilibrium conditions around a steady state, which yields a system of expectational difference equations. These can be written in the general form:</p>
-<p><span class="math display">\[
-E_t[f(x_{t+1}, x_t, x_{t-1}, \varepsilon_t)] = 0
-\]</span></p>
-<p>Solving these systems typically involves <strong>perturbation methods</strong> (for linear models) or <strong>projection methods</strong> (for nonlinearities). Estimation is usually carried out via:</p>
-<ul>
-<li><strong>Maximum likelihood</strong> using the <strong>Kalman filter</strong>, if the model is cast in state-space form.</li>
-<li><strong>Bayesian methods</strong>, which are especially popular in DSGE estimation. Priors are placed on structural parameters, and the likelihood is evaluated using filtering techniques. Posterior inference is conducted via MCMC (e.g., Metropolis-Hastings).</li>
-</ul>
-</section>
-<section id="software-used-in-dsge-models" class="level2">
-<h2 class="anchored" data-anchor-id="software-used-in-dsge-models">Software used in DSGE models</h2>
 <p>Standard tools for solving and estimating DSGE models include:</p>
 <ul>
 <li><strong>Dynare</strong> (MATLAB or Octave) — widely used in academia and central banks.</li>

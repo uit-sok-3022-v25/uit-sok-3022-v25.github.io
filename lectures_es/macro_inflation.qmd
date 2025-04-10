@@ -282,40 +282,6 @@ That said, DSGE models remain valuable as a **conceptual benchmark**. They help 
 In short, DSGE models offer deep theoretical insight but limited practical advantage for the type of empirical forecasting exercises required in this course.
 
 
-
-
-# Appendix
-
-## Structure and Estimation of DSGE Models
-
-DSGE models are built on the idea that macroeconomic aggregates — including inflation — emerge from the optimizing behavior of individual agents under uncertainty. These models typically consist of three key building blocks:
-
-1. **Households** optimize intertemporal utility subject to a budget constraint, choosing consumption, labor supply, and saving.
-2. **Firms** maximize profits under production technology constraints and often face frictions such as price or wage stickiness (e.g., Calvo pricing).
-3. **Policy authorities** (typically a central bank) set interest rates according to a monetary policy rule, often of the Taylor-type:
-   $$
-   i_t = \bar{i} + \phi_\pi (\pi_t - \pi^*) + \phi_y (y_t - y^*)
-   $$
-
-where $\pi_t$ is inflation, $y_t$ is output, and $\pi^*$, $y^*$ are targets or steady states.
-
-These decisions are modeled in a general equilibrium setting, incorporating stochastic shocks — such as technology, preference, monetary, and cost-push shocks — that affect the dynamic behavior of the system.
-
-## Solving and Estimating DSGE Models
-
-DSGE models are usually solved by log-linearizing the equilibrium conditions around a steady state, which yields a system of expectational difference equations. These can be written in the general form:
-
-$$
-E_t[f(x_{t+1}, x_t, x_{t-1}, \varepsilon_t)] = 0
-$$
-
-Solving these systems typically involves **perturbation methods** (for linear models) or **projection methods** (for nonlinearities). Estimation is usually carried out via:
-
-- **Maximum likelihood** using the **Kalman filter**, if the model is cast in state-space form.
-- **Bayesian methods**, which are especially popular in DSGE estimation. Priors are placed on structural parameters, and the likelihood is evaluated using filtering techniques. Posterior inference is conducted via MCMC (e.g., Metropolis-Hastings).
-
-## Software used in DSGE models
-
 Standard tools for solving and estimating DSGE models include:
 
 - **Dynare** (MATLAB or Octave) — widely used in academia and central banks.
