@@ -29,7 +29,7 @@ format:
 
 # Basic Macroeconomics
 
-To lay a strong foundation for inflation forecasting, we begin by revisiting the essential frameworks from a typical introductory macroeconomics course. Models such as the Aggregate Demand–Aggregate Supply (AD–AS) framework, the Phillips Curve, and the IS–LM model illustrate how key variables—output, employment, interest rates, and monetary policy—interact to influence the overall price level. These fundamental relationships form the basis for more sophisticated approaches to predicting inflation. By understanding how economic activity (demand) and production capacity (supply) jointly determine prices, we can better identify and anticipate the pressures that drive inflation within an economy.
+To lay a foundation for inflation forecasting, we begin by revisiting the essential frameworks from a typical introductory macroeconomics course. Models such as the Aggregate Demand–Aggregate Supply (AD–AS) framework, the Phillips Curve, and the IS–LM model illustrate how key variables—output, employment, interest rates, and monetary policy—interact to influence the overall price level. These fundamental relationships form the basis for more sophisticated approaches to predicting inflation. By understanding how economic activity (demand) and production capacity (supply) jointly determine prices, we can better identify and anticipate the pressures that drive inflation within an economy.
 
 
 ## Investment, Central Bank Interest Rates, and Inflation
@@ -38,55 +38,117 @@ In any economy, firms typically finance new projects and investments through bor
 
 Central banks, such as the Federal Reserve, the European Central Bank and Norges Bank, play a central role in determining these interest rates through their policy decisions. By setting a target policy rate, they influence the broader range of interest rates in the economy, including commercial and mortgage rates. Typically, a central bank will raise the policy rate in response to higher inflation or inflationary pressures with the goal of tempering aggregate demand and moderating price increases. On the other hand, lowering the policy rate is often intended to stimulate borrowing and spending, which can boost aggregate demand and potentially push inflation higher if economic activity exceeds the productive capacity of the economy.
 
-One way to visualize these relationships is via a simplified “IS curve” (Investment–Savings) and a horizontal policy rate line in interest rate–output space, see @fig-is-rr. The IS curve slopes downward because @hicks1937mr, at lower interest rates, aggregate demand (particularly investment spending) tends to be higher, thus increasing output. However, if the central bank sets a particular policy rate and commits to maintaining it, that rate appears as a horizontal line on the same diagram.
+One way to visualize these relationships is via a simplified “IS curve” (Investment–Savings) and a horizontal policy rate line in interest rate–output space, see upper right model in @fig-keynes. The IS curve slopes downward because @hicks1937mr, at lower interest rates, aggregate demand (particularly investment spending) tends to be higher, thus increasing output. However, if the central bank sets a particular policy rate and commits to maintaining it, that rate appears as a horizontal line on the same diagram.
 
 ```{python}
-#| label: fig-is-rr
+#| label: fig-keynes
 #| fig-cap: "Investment Supply and the interest rate"
-
 
 import numpy as np
 import matplotlib.pyplot as plt
 
-# A range of possible output (Y) values
+
+#Main parameters:
+
+model = 0
+
+if model == 0:
+    # CB signal driven economy
+    i_policy = 2.0
+    Inflation_expectations = 2 + 2*i_policy
+
+else:
+    # CB transparent inflation targeting economy
+    Inflation_expectations = 5
+    i_policy = 1 + (Inflation_expectations-2)
+
+# Common output range
 Y = np.linspace(0, 20, 200)
+# Phillips curve parameters
 
-# Define parameters for a simple linear IS curve: i = a - b * Y
-a = 5.0   # Intercept (interest rate when Y=0)
-b = 0.2   # Slope
 
-# Calculate the interest rate along the IS curve
-i_IS = a - b * Y
+U = np.linspace(3, 10, 200)
+U_eq = 5.5
+slope = -2
+P_phillips = Inflation_expectations + slope * (U - U_eq)
 
-# Central bank's policy rate (horizontal line)
-i_policy = 3.0
 
-# Create figure and axis
-fig, ax = plt.subplots(figsize=(6, 4))
+# AS-AD curve parameters
+a_AD = 14
+b_AD = 0.8
+d_AS = 0.4
 
-# Plot IS curve
-ax.plot(Y, i_IS, label='IS Curve')
+Y_star = (a_AD - Inflation_expectations) / b_AD
+P_AD = a_AD - b_AD * Y
+c_AS = Inflation_expectations - d_AS * Y_star
 
-# Plot horizontal policy rate line
-ax.axhline(y=i_policy, color='black', linestyle='--', label='Policy Rate')
+P_AS = c_AS + d_AS * Y
+Y_eq = (a_AD - c_AS) / (b_AD + d_AS)
+P_eq = a_AD - b_AD * Y_eq
 
-# Mark equilibrium point
-Y_star = (a - i_policy) / b
-ax.plot(Y_star, i_policy, 'ro')  # red dot
-ax.annotate(r'$Y^*$', xy=(Y_star, i_policy), xytext=(Y_star + 0.3, i_policy + 0.2),
-            arrowprops=dict(arrowstyle='->'))
-ax.axvline(x=Y_star, linestyle=':', color='gray')
+# IS curve parameters
+b_is = 0.2
+a_is = a_is = i_policy + b_is * Y_star
+i_IS = a_is - b_is * Y
 
-# Set labels and title
-ax.set_xlabel('Output (Y)')
-ax.set_ylabel('Interest Rate (i)')
-ax.set_title('Downward Sloping IS Curve and Horizontal Policy Rate')
 
-# Add legend and grid
-ax.legend()
-ax.set_ylim([0,5.5])
 
-# Show plot
+# Create unified 2x2 subplot grid
+fig, axs = plt.subplots(2, 2, figsize=(10, 8))
+
+# Top left: (empty)
+axs[0, 0].axis('off')
+
+# Top right: IS curve
+ax_is = axs[0, 1]
+ax_is.plot(Y, i_IS, label='IS Curve', color='blue')
+ax_is.axhline(y=i_policy, color='black', linestyle=':', label='Policy Rate')
+ax_is.axvline(x=Y_star, linestyle=':', color='gray')
+ax_is.plot(Y_star, i_policy, 'ro', label='IS equilibrium')  # equilibrium point
+ax_is.set_xlabel('Output (Y)')
+ax_is.set_ylabel('Interest Rate (i)')
+ax_is.set_title('IS Curve and Policy Rate')
+ax_is.legend()
+
+
+# Bottom left: Phillips curve
+ax_phillips = axs[1, 0]
+ax_phillips.plot(U, P_phillips, color='purple', label='Phillips Curve')
+ax_phillips.axhline(y=P_eq, linestyle=':', color='gray')
+ax_phillips.axvline(x=U_eq, linestyle=':', color='gray')
+ax_phillips.plot(U_eq, P_eq, 'ro', label='Phillips equilibrium')
+ax_phillips.set_xlabel('Unemployment (%)')
+ax_phillips.set_ylabel(r'Inflation ($\pi$)')
+ax_phillips.set_title('Phillips Curve')
+ax_phillips.legend()
+
+
+# Bottom right: AS-AD model
+ax_asad = axs[1, 1]
+ax_asad.plot(Y, P_AD, label="AD", color='blue')
+ax_asad.plot(Y, P_AS, label="AS", color='orange')
+ax_asad.plot(Y_eq, P_eq, 'ro', label='AS-AD equilibrium')
+ax_asad.axhline(y=P_eq, linestyle=':', color='gray')
+ax_asad.axvline(x=Y_star, linestyle=':', color='gray')
+ax_asad.set_xlabel('Real Output (Y)')
+ax_asad.set_ylabel(r'Price Level $\pi$)')
+ax_asad.set_title('AS-AD Model')
+ax_asad.legend()
+
+# Setting axes
+ax_is.set_ylim([0, 5.5])
+ax_is.set_xlim([0, 20])
+
+ax_asad.set_ylim([-2, 14])
+ax_asad.set_xlim([0, 20])
+
+ax_phillips.set_ylim([-2, 14])
+ax_phillips.set_xlim([3, 10])
+
+# Match y-limits for Phillips and AS-AD plots
+ax_phillips.set_ylim(ax_asad.get_ylim())
+
+plt.tight_layout()
 plt.show()
 
 ```
@@ -104,14 +166,18 @@ $$
 r \approx i - \pi
 $${#eq-fisher_equation}
 
-where $r$ is the real interest rate, $i$ is the nominal interest rate, and $\pi$ is the inflation rate.
+where $r$ is the real interest rate, $i$ is the nominal interest rate, and $\pi$ is the inflation rate. This is called the Fisher equation. If returns are calcualted as log change, the equation holds with strict equality. 
 
 This relationship implies that if inflation rises while the nominal interest rate remains unchanged, the real interest rate falls. In such a case, the burden of debt repayment becomes lighter in real terms, potentially encouraging more borrowing and spending. For instance, if the nominal interest rate is 5\% but inflation is 4\%, the real interest rate is only about 1\%. Thus, even a seemingly high nominal rate may correspond to a very low—or even negative—real rate when inflation is taken into account. This dynamic plays a crucial role in the transmission of monetary policy and is a key consideration when forecasting inflation and its broader economic effects.
+
+In @fig-keynes, the top right panel shows the IS curve, where the nominal interest rate is used as the policy instrument. For this to influence investment decisions—as assumed in the IS framework—it must effectively shift the real interest rate. This requires expected inflation to remain stable, so that changes in the nominal rate translate directly into changes in the real rate. Such an assumption is only reasonable if the central bank has a credible and transparent monetary policy, allowing inflation expectations to remain anchored in the short run.
 
 
 ## Aggregate Supply (AS) and Aggregate Demand (AD)
 
-Aggregate demand (AD) represents the total demand for goods and services in the economy at various price levels. It reflects the combined spending of households (consumption), firms (investment), the government, and the foreign sector (net exports). The AD curve is typically downward-sloping: as the price level falls, the quantity of goods and services demanded increases. This is due to several mechanisms, including wealth effects, interest rate effects, and exchange rate effects that influence behavior as prices change.
+Aggregate demand (AD) represents the total demand for goods and services in the economy at various price levels. It reflects the combined spending of households (consumption), firms (investment), the government, and the foreign sector (net exports). It is illustrated in the bottom right corver of @fig-keynes.
+
+The AD curve is typically downward-sloping: as the price level falls, the quantity of goods and services demanded increases. This is due to several mechanisms, including wealth effects, interest rate effects, and exchange rate effects that influence behavior as prices change.
 
 When aggregate demand increases rapidly—due to expansionary fiscal policy, accommodative monetary policy, or a surge in private sector confidence—it can outpace the economy’s productive capacity. In such cases, inflationary pressures may build as too much money chases too few goods. This situation is commonly referred to as demand-pull inflation.
 
@@ -119,65 +185,21 @@ Aggregate supply (AS), by contrast, captures the total output that firms are wil
 
 The interaction between aggregate demand and supply determines the equilibrium price level and real output in the economy. When aggregate demand increases in an economy already operating near full capacity, the price level tends to rise more than output, generating inflation. Alternatively, shifts in aggregate supply—such as a surge in commodity prices or disruptions to global supply chains—can lead to cost-push inflation. Positive supply-side developments, such as improved productivity or input cost reductions, can ease inflationary pressures.
 
-These dynamics are illustrated in @fig-as_ad below, where the **blue line** represents the downward-sloping AD curve and the **orange line** shows the upward-sloping AS curve. The intersection of these curves marks the equilibrium output and price level.
+### 2.5 The Phillips Curve
 
+The Phillips curve (@phillips1958relation), shown in the bottom left panel of @fig-keynes, illustrates the inverse relationship between inflation and unemployment in the short run. This relationship captures the idea that when unemployment is low—indicating a tight labor market—inflation tends to rise due to increased wage pressures. Conversely, when unemployment is high, inflationary pressures tend to subside.
 
-```{python}
-#| label: fig-as_ad
-#| fig-cap: "Aggregate Supply (AS) and Aggregate Demand (AD)"
+The version shown in the figure is an expectations-augmented Phillips curve, where the curve is anchored at a given level of expected inflation. As such, the vertical location of the curve reflects the public’s inflation expectations, often influenced by monetary policy credibility. If expectations rise, the entire curve shifts upward, implying higher inflation at every level of unemployment. Conversely, when expectations fall, the curve shifts downward.
 
-import numpy as np
-import matplotlib.pyplot as plt
+In the broader model context, the Phillips curve plays a crucial role in explaining how inflation expectations feed into short-run aggregate supply behavior. It provides a micro-founded mechanism for the upward or downward shifts of the AS curve, linking labor market conditions directly to inflation dynamics.
 
-# Stylized ranges for Real Output (Y)
-Y = np.linspace(0, 20, 200)
+## Putting it all together
 
-# Define the AD and AS curves
-a_AD = 12
-b_AD = 0.8
-P_AD = a_AD - b_AD * Y
+It is now time to bring all the components together by considering the full model setup illustrated in @fig-keynes. As the calculations demonstrate, we can distinguish between two conceptually different regimes for central bank behavior. In the first model—where the public looks to the central bank as a signal of future inflation rather than a stabilizing force—expectations are less firmly anchored. Inflation expectations tend to rise when the nominal interest rate rises, not because policy is restraining inflation, but because higher rates are interpreted as signals of future inflation. In this scenario, the AS curve shifts upward when the policy rate increases, and higher inflation is only consistent with higher output if the IS curve also shifts. This model reflects economies where monetary policy lacks credibility or where communication is weak, and expectations are formed in an extrapolative or adaptive fashion.
 
-c_AS = 2
-d_AS = 0.4
-P_AS = c_AS + d_AS * Y
+In contrast, the "transparent inflation-targeting economy" reflects a policy environment grounded in a systematic response to inflation expectations—most prominently captured by the Taylor Rule (@taylor1993discretion). Here, the central bank raises the policy rate when inflation is expected to rise and lowers it when inflation is expected to fall, in an effort to stabilize both inflation and output. In this regime, inflation expectations are anchored and act as a stabilizing force: the AS curve is pinned at the expected inflation rate, and the IS curve adjusts through the interest rate channel to restore equilibrium. This model corresponds to how most modern central banks describe their policy frameworks and is highly relevant for inflation forecasting.
 
-# Calculate equilibrium
-Y_eq = (a_AD - c_AS) / (b_AD + d_AS)
-P_eq = a_AD - b_AD * Y_eq  # Same as c_AS + d_AS * Y_eq
-
-# Create figure and axis
-fig, ax = plt.subplots(figsize=(6, 4))
-
-# Plot the AD and AS curves
-ax.plot(Y, P_AD, label="AD (Aggregate Demand)", color='blue')
-ax.plot(Y, P_AS, label="AS (Aggregate Supply)", color='orange')
-
-# Mark the equilibrium point
-ax.plot(Y_eq, P_eq, 'ro', label=f"Equilibrium (Y={Y_eq:.2f}, P={P_eq:.2f})")
-ax.axvline(x=Y_eq, linestyle=':', color='gray')
-ax.axhline(y=P_eq, linestyle=':', color='gray')
-
-# Labels, title, and legend
-ax.set_xlabel("Real Output (Y)")
-ax.set_ylabel("Price Level (P)")
-ax.set_title("Stylized AS-AD Model")
-ax.legend()
-# Show the plot
-plt.show()
-
-```
-
-
-## Currency and Inflation
-
-
-Exchange rates play an important role in shaping inflation dynamics, particularly in open economies that trade heavily with the rest of the world. When a country’s currency appreciates—meaning it strengthens relative to other currencies—imports become cheaper. This is because fewer units of the domestic currency are needed to purchase foreign goods and raw materials. As a result, an appreciation tends to ease inflationary pressures by reducing the cost of imported goods, which can translate into lower overall price levels for consumers and producers.
-
-On the other hand, when a currency depreciates, imports become more expensive. The higher local-currency price of foreign goods and inputs can feed directly into consumer prices or raise production costs for firms, contributing to inflation. This is particularly significant in countries that rely heavily on imported energy, food, or intermediate goods.
-
-Given this connection, central banks often take exchange rate movements into account when setting interest rates. A sudden depreciation of the currency, especially if driven by capital outflows or a loss of investor confidence, may prompt the central bank to raise interest rates to contain inflationary pressures. Conversely, if a strong currency is contributing to disinflation or even deflation, policymakers might consider lowering interest rates to support domestic demand and stabilize prices. Thus, the exchange rate serves as both a direct and indirect channel through which inflation is influenced and monetary policy decisions are shaped.
-
-
+For students engaged in forecasting inflation or interest rates, understanding these two regimes can be helpful. In the signal-driven regime — not commonly formalized in the academic literature — inflation expectations are endogenously shaped by movements in the policy rate. This makes it challenging to disentangle cause and effect, as interest rate changes may reflect shifts in sentiment rather than deliberate policy responses. By contrast, in the transparent inflation-targeting regime, interest rates operate as a systematic reaction function to deviations in inflation and output from their targets. This structure makes policy rates more predictable based on observable macroeconomic data and policy rules, such as the Taylor rule. Identifying which regime best characterizes the economy under study is therefore a critical judgment, as it shapes both model choice and the interpretation of forecasts.
 
 
 
