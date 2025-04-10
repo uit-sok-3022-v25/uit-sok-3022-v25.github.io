@@ -85,10 +85,10 @@ Denne besvarelsen trenger heller ikke være spesielt lang, men den skal innehold
   Eksempel: [predict_inflation_ssb.py](predict_inflation_ssb.py) og [predict_inflation_wb.py](predict_inflation_wb.py)
 
 ### Problemstilling:
-  * Lag en prediksjonsmodell for inflasjon. Vurder hvor godt modellen predikerer inflasjon og identifiser hva som er mest avgjørende for prediksjonen. Vurder om ARIMA/GARCH er nødvendig elle rnyttig. 
+  * Lag en prediksjonsmodell for inflasjon. Vurder hvor godt modellen predikerer inflasjon og identifiser hva som er mest avgjørende for prediksjonen. Vurder om ARIMA/GARCH er nødvendig eller nyttig. 
 
 ### Innledning
-  * Finn literatur om hvordan inflasjon kan predikeres ([Denne kan kanskje hjelpe dere i gang](../../reading/Stock%20and%20Watson%20(2007).pdf)).
+  * Finn literatur om hvordan inflasjon kan predikeres.
   * Beskriv problemstillingen og hvilke mekasnismer som bestemmer inflasjonen i et land.
   * Beskriv hva du forventer å finne
 
