@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import ssb
 import credentials as cr
-import pymssql
+#import pymssql
 import paneltime as pt
 import os
 from statsmodels import api as sm

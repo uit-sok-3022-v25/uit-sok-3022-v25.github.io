@@ -185,7 +185,7 @@ Aggregate supply (AS), by contrast, captures the total output that firms are wil
 
 The interaction between aggregate demand and supply determines the equilibrium price level and real output in the economy. When aggregate demand increases in an economy already operating near full capacity, the price level tends to rise more than output, generating inflation. Alternatively, shifts in aggregate supply—such as a surge in commodity prices or disruptions to global supply chains—can lead to cost-push inflation. Positive supply-side developments, such as improved productivity or input cost reductions, can ease inflationary pressures.
 
-### 2.5 The Phillips Curve
+## The Phillips Curve
 
 The Phillips curve (@phillips1958relation), shown in the bottom left panel of @fig-keynes, illustrates the inverse relationship between inflation and unemployment in the short run. This relationship captures the idea that when unemployment is low—indicating a tight labor market—inflation tends to rise due to increased wage pressures. Conversely, when unemployment is high, inflationary pressures tend to subside.
 
