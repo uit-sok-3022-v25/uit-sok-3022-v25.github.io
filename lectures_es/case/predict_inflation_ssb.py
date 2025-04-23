@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import ssb
 import credentials as cr
-#import pymssql
+import pymysql
 import paneltime as pt
 import os
 from statsmodels import api as sm
@@ -38,7 +38,7 @@ def main():
 
 	dfd['time'] = (dfd.index.year-dfd.index.year[0])*12 + dfd.index.month
 
-	if os.path.exists(PREDFILE):
+	if os.path.exists(PREDFILE) and False:
 		pred = pd.read_pickle(PREDFILE)
 	else:
 		pred = prediction(dfd)
@@ -78,7 +78,7 @@ def estimate(df):
 	return pr.iloc[-1]['Predicted KPI']
 
 def get_data():
-	if os.path.exists(DATAFILE):
+	if os.path.exists(DATAFILE) and False:
 		data = pd.read_pickle(DATAFILE)
 		return data
 	bnp = get_bnp()
@@ -128,12 +128,13 @@ def get_bonds():
 	return bonds
 
 def get_titlon():
-	con = pymssql.connect(host='titlon.uit.no', 
+	con = pymysql.connect(host='titlon.uit.no', 
 						user= cr.user, 
 						password = cr.password, 
 						database='OSE')  
 	crsr=con.cursor()
-	crsr.execute("SELECT * FROM [OSE].[dbo].[equityindex_linked]")
+	crsr.execute("SELECT * FROM OSE.equityindex_linked")
+
 	r=crsr.fetchall()
 	df=pd.DataFrame(list(r), columns=[i[0] for i in crsr.description])
 	df['Date'] = pd.to_datetime(df['Date'])

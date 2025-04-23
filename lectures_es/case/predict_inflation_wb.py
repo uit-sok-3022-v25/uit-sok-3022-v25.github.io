@@ -10,6 +10,8 @@ FLDR = os.path.dirname(__file__)
 FIGPATH = f'{FLDR}/figures/scatter_wb.png'
 PRED_DATAFILE = f'{FLDR}/output/pred_wb.dmp'
 
+pt.options.pqdkm = (1, 1, 0, 1, 2)
+
 def main():
 	data = get_data()
 	data = santitize_pick_data(data)
@@ -18,7 +20,7 @@ def main():
 	rng = rng[rng>rng[30]] # Skip first 20 years	
 
 	# Predict and compare if not already done
-	if os.path.exists(PRED_DATAFILE):
+	if os.path.exists(PRED_DATAFILE) and False:
 		df_obs_vs_pred = pd.read_pickle(PRED_DATAFILE)
 	else:
 		df_obs_vs_pred = pd.DataFrame()
@@ -65,13 +67,19 @@ def santitize_pick_data(data):
 	data = pd.DataFrame(data[['Inflation', 'GDP_growth','Interest_rate',
 						'Gross_Savings','Gov_Consumption','Year','Country']].dropna())
 	
-	return data
+	# Differencing
+	data_sorted = data.sort_values(by=["Country", "Year"])
+	cols_to_diff = ['Inflation', 'GDP_growth', 'Interest_rate', 'Gross_Savings', 'Gov_Consumption']
+	data_diff = data_sorted.groupby("Country")[cols_to_diff].diff()
+	data_diff["Year"] = data_sorted["Year"]
+	data_diff["Country"] = data_sorted["Country"]
+	data_diff = data_diff.dropna()
+	return data_diff
 
 def predict_and_compare(data, max_year):
 
 	data_test = data[data['Year']<max_year]
 
-	pt.options.pqdkm = (1, 1, 0, 1, 2)
 	m = pt.execute('Inflation~Intercept+GDP_growth+L(Inflation)+L(Interest_rate)+'
 						'L(Gross_Savings)+D(L(Gov_Consumption))', data_test, 'Year', 'Country' )
 	print(m)
