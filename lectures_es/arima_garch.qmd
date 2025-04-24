@@ -43,10 +43,12 @@ The reasons for handling this problems are
 
 The objective is therefore to transform $\mathbf{u}$ — typically serially correlated and heteroscedastic — into uncorrelated, homoscedastic residuals $\boldsymbol{\varepsilon}/\boldsymbol{\sigma}$ by applying
 
-1. **ARIMA filtering** removes mean persistence and unit‑roots, delivering the quasi‑innovations $\boldsymbol{\varepsilon}$.
-2. **GARCH standardisation** scales out time‑varying conditional variance, yielding the final innovations $\tilde{\varepsilon}_t = \varepsilon_t/\sigma_t$.
+1. ARIMA transformation that Removes mean persistence and unit roots, producing uncorrelated residuals $\boldsymbol{\varepsilon}$.
 
-Formally, the ARIMA step [@box2015time] is
+2. GARCH transformation  that estimates time-varying conditional variance, scaling the residuals to a common variance through standardisation: $\tilde{\varepsilon}_t = \varepsilon_t / \sigma_t$.
+
+
+Formally, the ARIMA transformation [@box2015time] is
 
 $$
 \boldsymbol{\varepsilon} = \mathbf{MA}^{-1} \cdot \mathbf{AR} \cdot \boldsymbol{\Delta}_d \mathbf{u}
@@ -91,7 +93,7 @@ $${#eq-L}
 
 You can verify yourself that premultiplying a column vector by $\mathbf{L}$ shifts its elements down by one period, inserting a zero in the first position. In this way, $\mathbf{L}$ effectively applies a one-period lag to the variable it is multiplied with.
 
-Although @eq-ARIMA_sum0 may appear complex at first glance—suggesting that “everything depends on everything”—it simplifies neatly when expressed using lag polynomials: 
+Although \eqref{eq-ARIMA_sum0} may appear complex at first glance—suggesting that “everything depends on everything”—it simplifies neatly when expressed using lag polynomials: 
 $$
 \left( \mathbf{I} - \sum_{j=1}^{p} \rho_{j} \mathbf{L}^{j} \right) \boldsymbol{\Delta}_d \mathbf{u} = \left( \mathbf{I} + \sum_{j=1}^{q} \lambda_{j} \mathbf{L}^{j} \right) \boldsymbol{\varepsilon}
 $${#eq-ARIMA_sum}
@@ -136,13 +138,13 @@ $$
 $${#eq-AR_exp}
 
 
-Hence, we can write (@eq-ARIMA_sum) in matrix notation as:
+Hence, we can write \eqref{eq-ARIMA_sum} in matrix notation as:
 
 $$
 \mathbf{AR} \cdot \boldsymbol{\Delta}_d \mathbf{u} = \mathbf{MA} \cdot \boldsymbol{\varepsilon}
 $${#eq-ARIMA_matrix}
 
-Our goal is to isolate the independent random noise embedded in the differenced residuals $\boldsymbol{\Delta}_d\mathbf{u}$. Recognising that this is a simple linear algebra problem, we can solve for the white-noise sequence $\boldsymbol{\varepsilon}$ by premultiplying both sides by the inverse of the moving-average operator $\mathbf{MA}^{-1}$:
+Our goal is to isolate the independent random noise embedded in the differenced residuals $\boldsymbol{\Delta}_d\mathbf{u}$. Recognising that this is a simple linear algebra problem, we can solve for the white-noise sequence $\boldsymbol{\varepsilon}$ by premultiplying both sides by the inverse of the moving-average operator matrix $\mathbf{MA}^{-1}$:
 
 $$
 \boldsymbol{\varepsilon} = \mathbf{MA}^{-1} \cdot \mathbf{AR} \cdot \boldsymbol{\Delta}_d \mathbf{u}
@@ -153,7 +155,7 @@ Hence, the white noise error terms $\boldsymbol{\varepsilon}$ can be obtained th
 
 # The GARCH process
 
-The primary objective of the GARCH transformation is to correct for serially conditioned heteroskedasticity — that is, time-varying volatility in the error process. Conceptually, the procedure closely parallels the ARIMA approach, but with an inverted goal: whereas ARIMA seeks to eliminate temporal dependence in the residuals by extracting the *innovations*, GARCH focuses on modelling the *volatility* itself.
+The primary objective of the GARCH transformation is to correct for serially conditioned heteroskedasticity — that is, time-varying volatility in the error process. Conceptually, the procedure closely parallels the ARIMA approach, but with an inverted goal: to model time dependence, not removing it.
 
 In this framework, we estimate the serially correlated conditional standard deviation vector $\boldsymbol{\sigma}$, which is then used to standardise the stationary ARIMA residuals $\boldsymbol{\varepsilon}$, producing homoscedastic white noise via:
 
@@ -169,7 +171,7 @@ $$
 \boldsymbol{\sigma}^{2} = \mathbf{G} + \sum_{j = 1}^{m} \psi_{j}\mathbf{L}^{j}\boldsymbol{\varepsilon}^2 + \sum_{j = 1}^{k} \gamma_{j} \mathbf{L}^{j} \boldsymbol{\sigma}^{2}
 $${#eq-GARCH_problem}
 
-The matrix $\mathbf{G}$ is a column vector $T \times 1$ with zeros, except the first term is the initial variance. As with ARIMA, we can rearrange the GARCH equation into an explicit solvable form:
+The matrix $\mathbf{G}$ is a column vector $T \times 1$ with zeros, except the first term is the initial variance, i.e. $\mathbf{G}'=[\sigma_0^2, 0,0,\cdot \cdot \cdot, 0]$. As with ARIMA, we can rearrange the GARCH equation into an explicit solvable form:
 
 $$
 \left( \mathbf{I} - \sum_{j = 1}^{k} \gamma_{j} \mathbf{L}^{j} \right) \boldsymbol{\sigma}^{2} = \mathbf{G} + \sum_{j = 1}^{m} \psi_{j} \mathbf{L}^{j} h\left( \boldsymbol{\varepsilon}, c \right)
@@ -185,9 +187,9 @@ $$
 \mathbf{AR}_{\sigma} = \sum_{j = 1}^{m} \psi_{j} \mathbf{L}^{j}
 $${#eq-ARs}
 
-$\mathbf{GA}_{\sigma}$ and $\mathbf{AR}_{\sigma}$ have similar structures as @eq-MA_exp and @eq-AR_exp.
+$\mathbf{GA}_{\sigma}$ and $\mathbf{AR}_{\sigma}$ have similar structures as \eqref{eq-MA_exp} and \eqref{eq-AR_exp}.
 
-Then, analogous to the ARIMA formulation, we can express the @eq-GARCH_solvable in operator form as:
+Then, analogous to the ARIMA formulation, we can express the \eqref{eq-GARCH_solvable} in operator form as:
 
 $$
 \mathbf{GA}_{\sigma} \cdot \boldsymbol{\sigma}^{2} =  \mathbf{G} + \mathbf{AR}_{\sigma} \cdot \boldsymbol{\varepsilon}^2
@@ -199,8 +201,7 @@ $$
 \boldsymbol{\sigma}^{2} = \mathbf{GA}_{\sigma}^{-1} \left( \mathbf{G} + \mathbf{AR}_{\sigma} \cdot \boldsymbol{\varepsilon}^2 \right)
 $${#eq-GARCH_solution}
 
-This transformation deflates the residuals by their conditional standard deviation, yielding a series $\varepsilon_t / \sigma_t$ that is homoscedastic under the model.
-
+This transformation models the conditional variance process and generates a sequence of variance estimates, which are used to standardise the heteroskedastic residuals. The resulting series, $\varepsilon_t / \sigma_t$, is homoscedastic under the model assumptions.
 
 
 ## Confusing terminology
