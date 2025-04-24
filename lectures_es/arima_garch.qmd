@@ -151,7 +151,7 @@ $${#eq-ARIMA_sol}
 Hence, the white noise error terms $\boldsymbol{\varepsilon}$ can be obtained through standard linear algebra by inverting the moving average operator. However, in practice, explicitly computing the inverse is often computationally expensive, so a recursive filtering approach is typically preferred for efficiency.
 
 
-# The GARCH process {#the-garch-process}
+# The GARCH process
 
 The primary objective of the GARCH transformation is to correct for serially conditioned heteroskedasticity — that is, time-varying volatility in the error process. Conceptually, the procedure closely parallels the ARIMA approach, but with an inverted goal: whereas ARIMA seeks to eliminate temporal dependence in the residuals by extracting the *innovations*, GARCH focuses on modelling the *volatility* itself.
 
@@ -203,7 +203,7 @@ This transformation deflates the residuals by their conditional standard deviati
 
 
 
-### Confusing terminology
+## Confusing terminology
 
 Following convention, the effects from $\boldsymbol{\varepsilon}^2$ are referred to as **autoregressive**, even though they represent the response to past innovations. Historically, the term GARCH was introduced by [@bollerslev1986generalized] to generalise the ARCH process by adding a persistent variance component.
 
