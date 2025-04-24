@@ -247,15 +247,15 @@ The "intrinsic value" here, is then the Black and Scholes fair value in excess o
 - Change the Black and Scholes figure to show a put option. The formula for the Black and Scholes put is
     $$
     P(S, X, T, r, \sigma) = X e^{-rT} \Phi(-d_2) - S \Phi(-d_1)
-    $${#eq-bs_put}
+    $${#eq-bs_put1}
     where
     $$
     d_1 = \frac{\ln(S / X) + \left(r + \frac{1}{2} \sigma^2 \right)T}{\sigma \sqrt{T}}
-    $${#eq-bs_put}
+    $${#eq-bs_put2}
     and
     $$
     d_2 = d_1 - \sigma \sqrt{T}
-    $${#eq-bs_put}
+    $${#eq-bs_put3}
 
     $\Phi$ is the cumulative standard normal distribution function. 
 
